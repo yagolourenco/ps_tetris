@@ -172,10 +172,10 @@ void new_block(){
 
 	while(c == currentBlock.color) c = rand()%6;
 	currentBlock.color = c;
-	currentBlock.direction = rand() % 2;
+	currentBlock.direction =rand() % 2;
 	currentBlock.size = rand() % 3 + 3;
 	currentBlock.y = 0;
-	currentBlock.x = rand()%LARGURA-(currentBlock.direction?0:currentBlock.size);
+	currentBlock.x = rand()%(LARGURA-(currentBlock.direction?0:currentBlock.size-1)); printf("x=%d\n", currentBlock.x);
 	put_block(currentBlock.x, currentBlock.y);
 }
 
@@ -197,8 +197,7 @@ int collision(int deslocX, int deslocY) {
 	for(i = 0 ; i < currentBlock.size ; i++) {
 		x = origX + (dirX * i) + deslocX;
 		y = origY + (dirY * i) + deslocY;
-		if(x >= 0 && x < LARGURA &&
-		   y >= 0 && y < ALTURA) {
+		if(x >= 0 && x < LARGURA && y >= 0 && y < ALTURA) {
 			if(game.field[x][y] != VAZIO) {
 				check = 0;
 				for(j = 0 ; j < currentBlock.size ; j++) {
@@ -220,8 +219,12 @@ void move_block(char opt){
 	int newX = currentBlock.x, newY = currentBlock.y;
 	
 	if(opt == 'S'){ /* move para baixo */ 
-		while(!collision(0, 1))
-			newY++;	
+		while(!collision(0, 1)) {
+			newY++;
+			put_block(newX, newY);
+			currentBlock.x = newX;
+			currentBlock.y = newY;	
+		}
 	}
 	else if(opt == 'D'){ /* move para direita */ 
 		if(!collision(1, 0))
@@ -309,10 +312,10 @@ void game_on(){
 	do{
 		new_block();
 		do {
-			show_field();	printf("%d x %d\n", currentBlock.x, currentBlock.y);
-			input = read_input();
+			show_field();
+			input = read_input();	printf("%d x %d - %c\n", currentBlock.x, currentBlock.y, input);
 			move_block(input);
-		} while(input != 'S');
+		} while(!collision(0,1));
 		show_field();
 		any_complete_line(); putchar('!');
 	} while(!game_over());
