@@ -54,10 +54,6 @@ void limpa_buffer(){
   while(getchar()!='\n');
 }
 
-void aleatorio(int* valor){
-  (*valor) = rand();
-}
-
 int getch(void) {
   int ch;
   struct termios oldt;
@@ -70,18 +66,12 @@ int getch(void) {
   tcsetattr(STDIN_FILENO, TCSANOW, &oldt); /*reapply the old settings */
   return ch; /*return received char */
 }
- 
+
 char getch_char(void) {
-  char ch;
-  struct termios oldt;
-  struct termios newt;
-  tcgetattr(STDIN_FILENO, &oldt); /*store old settings */
-  newt = oldt; /* copy old settings to new settings */
-  newt.c_lflag &= ~(ICANON | ECHO); /* make one change to old settings in new settings */
-  tcsetattr(STDIN_FILENO, TCSANOW, &newt); /*apply the new settings immediatly */
-  ch = getchar(); /* standard getchar call */
-  tcsetattr(STDIN_FILENO, TCSANOW, &oldt); /*reapply the old settings */
-  return ch; /*return received char */
+  int ch = getch;
+  if(ch >= 0 && ch < 128)
+	  return (char) ch;
+  retunr 0;
 }
 
 void enter(){
@@ -127,18 +117,38 @@ void show_instructions(){
 }
 
 void fall(char opt){
-	if(opt == 's'){
-		/* move para baixo */ 
-		
-		if(){  /* encontrou obstaculo, chama peca nova */
-			next_round = 0;
+	if(opt == 's'){ /* move para baixo */ 
+		if( obstaculo() ){
+			if(currentBlock.position == VERTICAL){ /*  */
+				
+			}
+			else{
+				
+			}
+		}
+		else{
+			next_round = 1;
 		}
 	}
-	else if(opt == 'd'){
-		/* move para direita */ 
+	else if(opt == 'd'){ /* move para direita */ 
+		if( obstaculo() ){
+			if(currentBlock.position == VERTICAL){ /*  */
+				
+			}
+			else{
+				
+			}
+		}
 	}
-	else if(opt == 'a'){
-		/* move para esquerda */ 
+	else if(opt == 'a'){ /* move para esquerda */ 
+		if( obstaculo() ){
+			if(currentBlock.position == VERTICAL){ /*  */
+				
+			}
+			else{
+				
+			}
+		}
 	}
 }
 
@@ -192,7 +202,7 @@ void show_table(){
 
 void start(){
 	char opt;
-	block currentBlock
+	block currentBlock;
 	do{
 		if(next_round == 1){
 			currentBlock.position = rand() % 2;
