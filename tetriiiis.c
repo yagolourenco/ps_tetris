@@ -3,7 +3,7 @@
 //	Claudio Segala Rodrigues Silva Filho
 //	Anne Caroline de Assis Pereira
 //	Andre Bittencourt? (eu esqueci seu sobrenome)
-//	Hector Marggitay
+//	Hector Rocha Margitay 
 //
 
 
@@ -27,6 +27,9 @@
 #define KMAG  "\x1b[35m"
 #define KCYN  "\x1b[36m"
 #define KWHT  "\x1b[37m"
+
+#define VERTICAL  1
+#define HORIZONTAL  0
 
 // Structs -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -117,12 +120,23 @@ void tela_fim(){
 
 void show_instructions(){
 	limpa_tela_legal();
-	printf(" Use as teclas a, s e d (pode usar CapsLock) para mover as pecas\n");
+	printf(" Use as teclas a, s e d (pode usar CapsLock tbm se vc for doente) para mover os bocos\n");
 	usleep(4000000);
 }
 
 void fall(char opt){
 	if(opt == 's'){
+		if( obstaculo() ){
+			if(currentBlock.position == VERTICAL){ /*  */
+				
+			}
+			else{
+				
+			}
+		}
+		else{
+			next_round = 1;
+		}
 		/* move para baixo */ 
 		/* encontrou obstaculo, chama peca nova */
 	}
@@ -230,4 +244,4 @@ int main(){
 	tela_inicio();
 	menu();
 	return 0;
-}
+}0
