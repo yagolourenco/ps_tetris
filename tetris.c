@@ -35,9 +35,14 @@ typedef struct{
 	double duration;
 } tetris;
 
+typedef struct{
+	int position, size, x, y;
+} block;
+
 // Variaveis Globais ---------------------------------------------------------------------------------------------------------------------------------
 
 tetris game;
+int next_round = 1;
 
 // Funcoes -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -124,7 +129,10 @@ void show_instructions(){
 void fall(char opt){
 	if(opt == 's'){
 		/* move para baixo */ 
-		/* encontrou obstaculo, chama peca nova */
+		
+		if(){  /* encontrou obstaculo, chama peca nova */
+			next_round = 0;
+		}
 	}
 	else if(opt == 'd'){
 		/* move para direita */ 
@@ -184,8 +192,14 @@ void show_table(){
 
 void start(){
 	char opt;
-	/* chama a primeira peca */
+	block currentBlock
 	do{
+		if(next_round == 1){
+			currentBlock.position = rand() % 2;
+			currentBlock.size = rand() % 3 + 3;
+			putBlock(currentBlock); /* chama a primeira peca */
+			next_round = 0;
+		}
 		limpa_tela_legal();
 		show_table();
 		do{ opt = getch_char(); }
