@@ -124,34 +124,52 @@ void show_instructions(){
 }
  
 //MODULO BLOCO___________________________________________________________________________________________
-int obstaculo(int dx, int dy) {
-	int i;
+int obstaculo(int deslocax, int deslocay) {
+	int i, j, x, y, ax, ay, cx, cy;
 	
+	x = currentBlock.x;
+	y = currentBlock.y;
+
+	if(currentBlock.direction==HORIZONTAL) {
+		ax = 1;
+		ay = 0;
+	}
+	else if(currentBlock.direction==VERTICAL) {
+		ax = 0;
+		ay = 1;
+	}
+
 	for(i = 0 ; i < currentBlock.size ; i++) {
-		if(currentBlock.x + dx >= 0 &&
-		   currentBlock.x + dx < LARGURA &&
-		   currentBlock.y + dy >= 0 &&
-		   currentBlock.y + dy < ALTURA 0) {
-			if(game.field[currentBlock.x+dx][currentBlock.y + dy] != VAZIO) {
-		
+		cx = x + (ax * i) + deslocax
+		cy = y + (ay * i) + deslocay
+		if(cx >= 0 && cx < LARGURA &&
+		   cy >= 0 && cy < ALTURA 0) {
+			if(game.field[cx][cy] != VAZIO) {
+				check = 0;
+				for(j = 0 ; j < currentBlock.size ; j++) {
+					if(cx == x + (ax*j) && cy == y + (ay*j))
+						check = 1;
+				}
+				if(check == 0)
+					return 1;
 			}
 		}
 		else 
-			return 0;
+			return 1;
 	}
 
-	return 1;
+	return 0;
 }
 
 void move(char opt){
 	if(opt == 's' || opt == 'S'){ /* move para baixo */ 
-		
+		obstaculo(0, 1);	
 	}
 	else if(opt == 'd' || opt == 'D'){ /* move para direita */ 
-		
+		obstaculo(1, 0);	
 	}
-	else if(opt == 'a' || opt == 'S'){ /* move para esquerda */ 
-
+	else if(opt == 'a' || opt == 'A'){ /* move para esquerda */ 
+		obstaculo(-1, 0);	
 	}
 }
 
