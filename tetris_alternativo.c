@@ -1,10 +1,10 @@
-//	Trabalho Pratica 1
-//	Genaina - Programacao Sistematica
-//	Claudio Segala Rodrigues Silva Filho
-//	Anne Caroline de Assis Pereira
-//	Andre Bittencourt? (eu esqueci seu sobrenome)
-//	Hector Marggitay
-//
+//	Trabalho Pratica 1                            |
+//	Genaina - Programacao Sistematica             |
+//	André Luiz de Moura Ramos Bittencourt         |
+//	Claudio Segala Rodrigues Silva Filho          |
+//	Anne Caroline de Assis Pereira                |
+//	Hector Marggitay                              |
+// _______________________________________________|
 
 
 // Bibliotecas --------------------------------------------------------------------------------------------------------------------------------------
