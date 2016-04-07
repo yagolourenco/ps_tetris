@@ -96,7 +96,7 @@ void show_instructions(){
 void show_field(){
 	int x, y;
 	limpa_tela_legal();
-    printf(" Pontuacao: %d\n\n", game.points);
+    printf(KBLC BGWHT" Pontuacao: %d\n\n" RESET, game.points);
     for(x = 0; x < LARGURA+2; x++)
     	printf(BGWHT "  ");
     printf(RESET "\n");
@@ -168,9 +168,9 @@ void put_block(int newX, int newY) {
 }
 
 void new_block(){
-	int c = rand()%6;
+	int c = 1 + rand() % 5;
 
-	while(c == currentBlock.color) c = rand()%6;
+	while(c == currentBlock.color) c = 1 + rand() % 5;
 	currentBlock.color = c;
 	currentBlock.direction =rand() % 2;
 	currentBlock.size = rand() % 3 + 3;
@@ -224,6 +224,8 @@ void move_block(char opt){
 			put_block(newX, newY);
 			currentBlock.x = newX;
 			currentBlock.y = newY;	
+			show_field();
+			usleep(5000);
 		}
 	}
 	else if(opt == 'D'){ /* move para direita */ 
@@ -313,11 +315,11 @@ void game_on(){
 		new_block();
 		do {
 			show_field();
-			input = read_input();	printf("%d x %d - %c\n", currentBlock.x, currentBlock.y, input);
+			input = read_input();
 			move_block(input);
 		} while(!collision(0,1));
 		show_field();
-		any_complete_line(); putchar('!');
+		any_complete_line();
 	} while(!game_over());
 	t_end = clock() / CLOCKS_PER_SEC;
 	/* De acordo com o dito pelo IME em uma de suas apostilas, esse metodo so consegue guardar ate 35 minutos*/
