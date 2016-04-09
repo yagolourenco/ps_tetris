@@ -1,12 +1,12 @@
-//	Programacao Sistematica	                      |
-//	Trabalho Pratico 1                            |
-//	Professor(a): Genaina                         |
-//	Alunos:                                       |
-//		André Luiz de Moura Ramos Bittencourt     |
-//		Claudio Segala Rodrigues Silva Filho      |
-//		Anne Caroline de Assis Pereira            |
-//		Hector Rocha Margittay                    |
-// _______________________________________________|
+//	Programacao Sistematica	                          |
+//	Trabalho Pratico 1                                |
+//	Professor(a): Genaina                             |
+//	Alunos:                                           |
+//		André Luiz de Moura Ramos Bittencourt         |
+//		Claudio Segala Rodrigues Silva Filho          |
+//		Anne Caroline de Assis Pereira                |
+//		Hector Rocha Margittay                        |
+// ___________________________________________________|
 
 
 // Bibliotecas --------------------------------------------------------------------------------------------------------------------------------------
@@ -21,6 +21,7 @@
 // Defines ------------------------------------------------------------------------------------------------------------------------------------------
 
 #define RESET "\x1b[0m"
+#define FBLD "\x1b[1m"
 #define KBLC "\x1b[30m"
 #define KRED "\x1b[31m"
 #define KGRN "\x1b[32m"
@@ -48,6 +49,7 @@
 
 typedef struct{
 	int field[LARGURA][ALTURA], points;
+	struct timespec t_start, t_stop;
 	double duration;
 } tetris;
 
@@ -71,20 +73,26 @@ void limpa_tela_legal(){
 
 void show_title(){
 	limpa_tela_legal();
-	printf(KBLU "______________  ______________  ______________  ___________    __________  ______________ \n" RESET);
-	printf(KBLU "      |         |                     |         |          \\       ||      |              \n" RESET);
-	printf(KBLU "      |         |                     |         |           |      ||      |              \n" RESET);
-	printf(KBLU "      |         |_____________        |         |__________/       ||      |_____________ \n" RESET);
-	printf(KBLU "      |         |                     |         |         \\        ||                   | \n" RESET);
-	printf(KBLU "      |         |                     |         |          \\       ||                   | \n" RESET);
-	printf(KBLU "      |         |_____________        |         |           \\  ____||____   ____________| \n" RESET);
-	printf("\n\n");
+	printf(FBLD);
+	printf(KRED"┌─┬─┬─┐ "KCYN" ┌─┬─┬─┐ "KRED" ┌─┬─┬─┐ "KGRN" ┌─┬─┬─┐ "KMAG" ┌─┐ "KYEL" ┌─┬─┬─┐ \n");
+	printf(KRED"└─┼─┼─┘ "KCYN" ├─┼─┴─┘ "KRED" └─┼─┼─┘ "KGRN" ├─┼─┴─┘ "KMAG" ├─┤ "KYEL" ├─┼─┴─┘ \n");
+	printf(KRED"  ├─┤   "KCYN" ├─┼─┬─┐ "KRED"   ├─┤   "KGRN" ├─┤     "KMAG" ├─┤ "KYEL" ├─┼─┬─┐ \n");
+	printf(KRED"  ├─┤   "KCYN" ├─┼─┴─┘ "KRED"   ├─┤   "KGRN" ├─┤     "KMAG" ├─┤ "KYEL" └─┴─┼─┤ \n");
+	printf(KRED"  ├─┤   "KCYN" ├─┼─┬─┐ "KRED"   ├─┤   "KGRN" ├─┤     "KMAG" ├─┤ "KYEL" ┌─┬─┼─┤ \n");
+	printf(KRED"  └─┘   "KCYN" └─┴─┴─┘ "KRED"   └─┘   "KGRN" └─┘     "KMAG" └─┘ "KYEL" └─┴─┴─┘ \n");
+	printf(RESET);
 }
 
 void show_menu() {
 	limpa_tela_legal();
-	printf(KBLU "1 - Jogar\n" RESET);
-	printf(KBLU "2 - Sair\n" RESET);
+	printf(FBLD KBLU);
+	printf("┌──────────────┐\n");
+	printf("├[1][  "KWHT"Jogar"KBLU"  ]┤\n");
+	printf("└──────────────┘\n");
+	printf("┌──────────────┐\n");
+	printf("├[2][  "KRED"Sair"KBLU"   ]┤\n");
+	printf("└──────────────┘\n");
+	printf(RESET);
 }
 
 void show_instructions(){
@@ -96,7 +104,7 @@ void show_instructions(){
 void show_field(){
 	int x, y;
 	limpa_tela_legal();
-    printf(KBLC BGWHT" Pontuacao: %d\n\n" RESET, game.points);
+    printf(KBLC BGWHT" Pontuacao: %d                    \n" RESET, game.points);
     for(x = 0; x < LARGURA+2; x++)
     	printf(BGWHT "  ");
     printf(RESET "\n");
@@ -110,7 +118,7 @@ void show_field(){
 					printf(BGBLC "  ");
 			}
 			else {
-				switch(currentBlock.color) {
+				switch(game.field[x][y]) {
 					case 1:	printf(KRED);
 							break;
 					case 2:	printf(KGRN);
@@ -123,8 +131,10 @@ void show_field(){
 							break;
 					case 6:	printf(KCYN);
 							break;
+					case 7:	printf(KWHT);
+							break;
 				}
-				printf(BGBLC "[]");
+				printf(FBLD BGBLC "[]");
 			}
 		}
 		printf(BGWHT "  \n" RESET);
@@ -136,14 +146,18 @@ void show_field(){
 
 void show_end(){
 	limpa_tela_legal();
-	printf(KRED "Vc pontuou %d em %lf\n"  RESET, game.points, game.duration);
-	printf(KGRN "Parabens por ter chegado tao longe jovem padawan\n" RESET);
-	printf(KGRN "Todo seu progresso foi inutil pois nao guardamos ranking ainda\n" RESET);
-	printf(KGRN "Sinta-se livre de baixar um app de tetris decente\n" RESET);
-	printf(KGRN "Feito por: programadores escravos da bolivia\n" RESET);
-	printf(KGRN "Fazer o que?\n" RESET);
-	printf(KGRN " ¯\\_(ツ)_/¯\n");
-	usleep(500000);
+	printf(KRED "Voce fez %d pontos em %d minutos e %d segundos\n"  RESET, game.points, (int)(game.duration/60), (int)(game.duration-(game.duration/60)));
+	usleep(2000000);
+	printf(KGRN "Parabens por ter chegado tao longe jovem padawan\n");
+	usleep(2000000);
+	printf(KGRN "Todo seu progresso foi inutil pois nao guardamos ranking ainda\n" );
+	usleep(2000000);
+	printf(KGRN "Sinta-se livre de baixar um app de tetris decente\n");
+	usleep(2000000);
+	printf(KGRN "Feito por: programadores escravos da bolivia\n");
+	usleep(2000000);
+	printf(KGRN "Fazer o que?\n");
+	printf(KGRN " ¯\\_(ツ)_/¯\n"RESET);
 }
 
 // MODULO BLOCO_______________________________________________________________________________________________________________________________________
@@ -246,6 +260,10 @@ void move_block(char opt){
 
 void cut_this_line(int y){
 	int x;
+	for(x=0;x<LARGURA;x++)
+		game.field[x][y] = 7;
+	show_field();
+	usleep(500000);
 	for(;y>=1;y--)
 		for(x=0;x<LARGURA;x++)
 			game.field[x][y]=game.field[x][y-1];
@@ -268,7 +286,15 @@ void any_complete_line(){
 
 void start() {
 	show_title();
-	usleep(1500000);
+	usleep(2000000);
+}
+
+void limpa_buffer() {
+	while(getchar()!='\n');
+}
+
+void start_clock() {
+	clock_gettime(CLOCK_REALTIME, &(game.t_start));
 }
 
 char getch(void) {
@@ -305,12 +331,23 @@ int game_over(){
 	return 0;
 }
 
+void stop_clock() {
+	clock_gettime(CLOCK_REALTIME, &(game.t_stop));
+}
+
+void get_duration() {
+	stop_clock();
+	game.duration = (game.t_stop.tv_sec - game.t_start.tv_sec) +
+					((game.t_stop.tv_nsec - game.t_start.tv_nsec)/1E9);
+}
+
 void game_on(){
-	clock_t t_begin = clock() / CLOCKS_PER_SEC, t_end;
 	char input;
 	
 	set_game();
 	show_instructions();
+	limpa_buffer();
+	start_clock();
 	do{
 		new_block();
 		do {
@@ -321,10 +358,9 @@ void game_on(){
 		show_field();
 		any_complete_line();
 	} while(!game_over());
-	t_end = clock() / CLOCKS_PER_SEC;
-	/* De acordo com o dito pelo IME em uma de suas apostilas, esse metodo so consegue guardar ate 35 minutos*/
-	game.duration = t_end - t_begin;
+	get_duration();
 	show_end();
+	limpa_buffer();
 }
 
 int main() {
