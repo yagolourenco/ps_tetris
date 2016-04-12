@@ -2,11 +2,11 @@
 //	Trabalho Pratico 1                                |
 //	Professor(a): Genaina                             |
 //	Alunos:                                           |
-//		André Luiz de Moura Ramos Bittencourt         |
-//		Claudio Segala Rodrigues Silva Filho          |
-//		Anne Caroline de Assis Pereira                |
-//		Hector Rocha Margittay                        |
-// ___________________________________________________|
+//	  André Luiz de Moura Ramos Bittencourt           |
+//	  Claudio Segala Rodrigues Silva Filho            |
+//	  Anne Caroline de Assis Pereira                  |
+//	  Hector Rocha Margittay                          |
+// _______________________________________________________|
 
 
 // Bibliotecas --------------------------------------------------------------------------------------------------------------------------------------
@@ -20,24 +20,6 @@
 
 // Defines ------------------------------------------------------------------------------------------------------------------------------------------
 
-#define RESET "\x1b[0m"
-#define FBLD "\x1b[1m"
-#define KBLC "\x1b[30m"
-#define KRED "\x1b[31m"
-#define KGRN "\x1b[32m"
-#define KYEL "\x1b[33m"
-#define KBLU "\x1b[34m"
-#define KMAG "\x1b[35m"
-#define KCYN "\x1b[36m"
-#define KWHT "\x1b[37m"
-#define BGBLC "\x1b[40m"
-#define BGRED "\x1b[41m"
-#define BGGRN "\x1b[42m"
-#define BGYEL "\x1b[43m"
-#define BGBLU "\x1b[44m"
-#define BGMAG "\x1b[45m"
-#define BGCYN "\x1b[46m"
-#define BGWHT "\x1b[47m"
 #define LARGURA 15
 #define ALTURA 25
 #define LIMITE 5
@@ -66,15 +48,25 @@ block currentBlock;
 
 // MODULO TELA________________________________________________________________________________________________________________________________________
 
+void set_color() {
+	start_color();
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(4, COLOR_BLUE, COLOR_BLACK);
+	init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(6, COLOR_CYAN, COLOR_BLACK);
+
+
 void show_title(){
 	clear();
 	move(0,0);
 	printw(" _____   _____   _____   _____   _   _____ \n");
-	printw("|_|_|_| |_|_|_| |_|_|_| |_|_|_| |_| |_|_|_|\n");
-	printw("  |_|   |_|___    |_|   |_|     |_| |_|___ \n");
-	printw("  |_|   |_|_|_|   |_|   |_|     |_| |_|_|_|\n");
-	printw("  |_|   |_|___    |_|   |_|     |_|  ___|_|\n");
-	printw("  |_|   |_|_|_|   |_|   |_|     |_| |_|_|_|\n");
+	printw("|_|_|_| |_|_|_| |_|_|_| |_|_|_| |_| |_|_|_|\n");
+	printw("  |_|   |_|___    |_|   |_|     |_| |_|___ \n");
+	printw("  |_|   |_|_|_|   |_|   |_|     |_| |_|_|_|\n");
+	printw("  |_|   |_|___    |_|   |_|     |_|  ___|_|\n");
+	printw("  |_|   |_|_|_|   |_|   |_|     |_| |_|_|_|\n");
 	refresh();
 }
 
@@ -110,23 +102,8 @@ void show_field(){
 					printw(BGBLC "  ");
 			}
 			else {
-				switch(game.field[x][y]) {
-					case 1:	printw(KRED);
-							break;
-					case 2:	printw(KGRN);
-							break;
-					case 3:	printw(KYEL);
-							break;
-					case 4:	printw(KBLU);
-							break;
-					case 5:	printw(KMAG);
-							break;
-					case 6:	printw(KCYN);
-							break;
-					case 7:	printw(KWHT);
-							break;
-				}
-				printw(FBLD BGBLC "[]");
+				attr_set(A_BOLD | COLOR_SET(game.field[x][y])));
+				printw("[]");
 			}
 		}
 		printw(BGWHT "  \n" RESET);
@@ -137,18 +114,20 @@ void show_field(){
 }
 
 void show_end(){
-	printw(KRED "Voce fez %d pontos em %d minutos e %d segundos\n"  RESET, game.points, (int)(game.duration/60), (int)(game.duration-(game.duration/60)));
+	attrset(COLOR_SET(1));
+	printw("Voce fez %d pontos em %d minutos e %d segundos\n"  RESET, game.points, (int)(game.duration/60), (int)(game.duration-(game.duration/60)));
 	usleep(2000000);
-	printw(KGRN "Parabens por ter chegado tao longe jovem padawan\n");
+	attrset(COLOR_SET(2));
+	printw("Parabens por ter chegado tao longe jovem padawan\n");
 	usleep(2000000);
-	printw(KGRN "Todo seu progresso foi inutil pois nao guardamos ranking ainda\n" );
+	printw("Todo seu progresso foi inutil pois nao guardamos ranking ainda\n" );
 	usleep(2000000);
-	printw(KGRN "Sinta-se livre de baixar um app de tetris decente\n");
+	printw("Sinta-se livre de baixar um app de tetris decente\n");
 	usleep(2000000);
-	printw(KGRN "Feito por: programadores escravos da bolivia\n");
+	printw("Feito por: programadores escravos da bolivia\n");
 	usleep(2000000);
-	printw(KGRN "Fazer o que?\n");
-	printw(KGRN " ¯\\_(ツ)_/¯\n"RESET);
+	printw("Fazer o que?\n");
+	printw(" ¯\\_(ツ)_/¯\n");
 }
 
 // MODULO BLOCO_______________________________________________________________________________________________________________________________________
@@ -280,7 +259,7 @@ void init_ncurses() {
 	cbreak();
 	noecho();
 	curs_set(0);
-	start_color();
+	set_color();
 	keypad(stdscr, TRUE);
 }
 
