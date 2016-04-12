@@ -294,7 +294,7 @@ void limpa_buffer() {
 }
 
 void start_clock() {
-	clock_gettime(CLOCK_REALTIME, &(game.t_start));
+	//clock_gettime(CLOCK_REALTIME, &(game.t_start));
 }
 
 char getch(void) {
@@ -332,7 +332,7 @@ int game_over(){
 }
 
 void stop_clock() {
-	clock_gettime(CLOCK_REALTIME, &(game.t_stop));
+	//clock_gettime(CLOCK_REALTIME, &(game.t_stop));
 }
 
 void get_duration() {
