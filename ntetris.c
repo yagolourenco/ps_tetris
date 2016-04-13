@@ -68,7 +68,6 @@ void show_title(){
 	int i;
 	clear();
 	move(0,0);
-<<<<<<< HEAD
 	printw(" _____   _____   _____   _____   _   _____  \n");
 	printw("|_|_|_| |_|_|_| |_|_|_| |_|_|_| |_| |_|_|_| \n");
 	printw("  |_|   |_|___    |_|   |_|     |_| |_|___  \n");
@@ -84,14 +83,6 @@ void show_title(){
 		mvchgat(i, 32, 4, A_BOLD, 5, NULL);
 		mvchgat(i, 36, 8, A_BOLD, 3, NULL);
 	}
-=======
-	printw(" _____   _____   _____   _____   _   _____ \n");
-	printw("|_|_|_| |_|_|_| |_|_|_| |_|_|_| |_| |_|_|_|\n");
-	printw("  |_|   |_|___    |_|   |_|     |_| |_|___ \n");
-	printw("  |_|   |_|_|_|   |_|   |_|     |_| |_|_|_|\n");
-	printw("  |_|   |_|___    |_|   |_|     |_|  ___|_|\n");
-	printw("  |_|   |_|_|_|   |_|   |_|     |_| |_|_|_|\n");
->>>>>>> f2dfda3a94d3383354c9aabc5f4f7e4c4eeda190
 	refresh();
 }
 
@@ -150,7 +141,6 @@ void show_field(){
 				attroff(COLOR_PAIR(7));
 			}
 			else {
-<<<<<<< HEAD
 				switch(game.field[x][y]) {
 					case 1:	attron(COLOR_PAIR(1));
 							break;
@@ -170,17 +160,12 @@ void show_field(){
 				attron(A_BOLD);
 				printw("[]");
 				attroff(A_BOLD);
-=======
-				attr_set(A_BOLD | COLOR_SET(game.field[x][y])));
-				printw("[]");
->>>>>>> f2dfda3a94d3383354c9aabc5f4f7e4c4eeda190
 			}
 		}
 	refresh();
 }
 
 void show_end(){
-<<<<<<< HEAD
 	clear();
 	refresh();
 	attrset(COLOR_PAIR(1));
@@ -205,22 +190,6 @@ void show_end(){
 	refresh();
 	attrset(A_NORMAL);
 	printw("      Aperte [ENTER] para continuar\n");
-=======
-	attrset(COLOR_SET(1));
-	printw("Voce fez %d pontos em %d minutos e %d segundos\n"  RESET, game.points, (int)(game.duration/60), (int)(game.duration-(game.duration/60)));
-	usleep(2000000);
-	attrset(COLOR_SET(2));
-	printw("Parabens por ter chegado tao longe jovem padawan\n");
-	usleep(2000000);
-	printw("Todo seu progresso foi inutil pois nao guardamos ranking ainda\n" );
-	usleep(2000000);
-	printw("Sinta-se livre de baixar um app de tetris decente\n");
-	usleep(2000000);
-	printw("Feito por: programadores escravos da bolivia\n");
-	usleep(2000000);
-	printw("Fazer o que?\n");
-	printw(" ¯\\_(ツ)_/¯\n");
->>>>>>> f2dfda3a94d3383354c9aabc5f4f7e4c4eeda190
 }
 
 // MODULO BLOCO_______________________________________________________________________________________________________________________________________
