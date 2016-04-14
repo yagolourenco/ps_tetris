@@ -1,10 +1,19 @@
 all: programa limpa
 
-programa: tetris.o 
-	gcc tetris.o -o tretas
+programa: ntetris.o campo.o bloco.o engine.o  
+	gcc ntetris.o campo.o bloco.o engine.o -lncurses -o programa
 
-tetris.o: tetris.c 
-	gcc -c tetris.c
+ntetris.o: ntetris.c campo.c Campo.h bloco.c Bloco.h engine.c Engine.h
+	gcc -c ntetris.c -lncurses
+
+bloco.o: bloco.c Estruturas.h Bloco.h
+	gcc -c bloco.c -lncurses
+
+campo.o: campo.c Estruturas.h Campo.h
+	gcc -c campo.c -lncurses
+
+engine.o: engine.c Estruturas.h Engine.h
+	gcc -c engine.c -lncurses
 
 limpa:
 	rm *.o 
