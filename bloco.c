@@ -5,7 +5,11 @@
 #include<string.h> 
 #include<termios.h> 
 
-#include "Estruturas.h"
+#include "Estruturas.h"	
+
+#ifndef ESTRUTURAS_H
+#define ESTRUTURAS_H
+#endif
 
 void put_block(int newX, int newY) {
 	int i, dirX, dirY;
@@ -125,8 +129,4 @@ void any_complete_line(){
 			game.points += 100;
 		}
 	}
-}
-
-int main(){
-	return 0;
 }

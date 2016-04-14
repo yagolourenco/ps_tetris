@@ -1,3 +1,5 @@
+#define ENGINE_H
+
 void init_ncurses();
 
 void start();

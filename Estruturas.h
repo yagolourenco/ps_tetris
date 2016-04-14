@@ -1,3 +1,5 @@
+#define ESTRUTURAS_H
+
 #define LARGURA 15
 #define ALTURA 25
 #define LIMITE 5

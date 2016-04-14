@@ -5,7 +5,11 @@
 #include<string.h> 
 #include<termios.h> /* para a funcao getch_char e getch*/
 
-#include "Estruturas.h"
+#include "Estruturas.h"	
+
+#ifndef ESTRUTURAS_H
+#define ESTRUTURAS_H
+#endif
 
 void set_color() {
 	start_color();
@@ -148,6 +152,3 @@ void show_end(){
 	printw("      Aperte [ENTER] para continuar\n");
 }
 
-int main(){
-	return 0;
-}

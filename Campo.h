@@ -1,3 +1,5 @@
+#define CAMPO_H
+
 void set_color();
 
 void show_title();

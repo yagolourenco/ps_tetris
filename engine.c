@@ -5,7 +5,11 @@
 #include<string.h> 
 #include<termios.h> 
 
-#include "Estruturas.h"
+#include "Estruturas.h"	
+
+#ifndef ESTRUTURAS_H
+#define ESTRUTURAS_H
+#endif
 
 void init_ncurses() {
 	initscr();
@@ -68,8 +72,4 @@ void game_on(){
 	get_duration();
 	show_end();
 	get_enter();
-}
-
-int main(){
-	return 0;
 }

@@ -1,3 +1,5 @@
+#define BLOCO_H
+
 void put_block(int, int);
 void new_block();
 int collision(int, int);
