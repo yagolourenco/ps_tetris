@@ -5,11 +5,7 @@
 #include<string.h> 
 #include<termios.h> /* para a funcao getch_char e getch*/
 
-#include "Estruturas.h"	
-
-#ifndef ESTRUTURAS_H
-#define ESTRUTURAS_H
-#endif
+#include "Estruturas.h"
 
 void set_color() {
 	start_color();

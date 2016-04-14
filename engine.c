@@ -7,10 +7,6 @@
 
 #include "Estruturas.h"	
 
-#ifndef ESTRUTURAS_H
-#define ESTRUTURAS_H
-#endif
-
 void init_ncurses() {
 	initscr();
 	cbreak();

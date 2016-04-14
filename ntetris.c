@@ -15,22 +15,6 @@
 #include<string.h> 
 #include<termios.h> /* para a funcao getch_char e getch*/
 
-#ifndef ESTRUTURAS_H
-#define ESTRUTURAS_H
-#endif
-
-#ifndef ENGINE_H
-#define ENGINE_H
-#endif
-
-#ifndef CAMPO_H
-#define CAMPO_H
-#endif
-
-#ifndef BLOCO_H
-#define BLOCO_H
-#endif
-
 int main() {
 	char opt;
 	

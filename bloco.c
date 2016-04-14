@@ -7,10 +7,6 @@
 
 #include "Estruturas.h"	
 
-#ifndef ESTRUTURAS_H
-#define ESTRUTURAS_H
-#endif
-
 void put_block(int newX, int newY) {
 	int i, dirX, dirY;
 	
