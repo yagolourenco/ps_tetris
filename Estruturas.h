@@ -4,6 +4,7 @@
 #define HORIZONTAL 0
 #define VERTICAL 1
 #define VAZIO 0
+#define FALSO 2
 
 typedef struct{
 	int field[LARGURA][ALTURA], points;
