@@ -1,6 +1,6 @@
-void put_block(int, int);
+int put_block(int, int);
 void new_block();
 int collision(int, int);
-void move_block(int);
-void cut_this_line(int);
+int move_block(int);
+int cut_this_line(int);
 void any_complete_line();
