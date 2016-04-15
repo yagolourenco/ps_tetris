@@ -41,8 +41,6 @@ int put_block(int newX, int newY) {
 
 void new_block(){
 
-	srand(time(NULL));
-
 	int c = 1 + rand() % 5;
 
 	while(c == currentBlock.color) c = 1 + rand() % 5; /* Mudar a cor do bloco em relação ao anterior */
