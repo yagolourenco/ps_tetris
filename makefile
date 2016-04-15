@@ -1,7 +1,7 @@
 all: programa limpa
 
 programa: ntetris.o campo.o bloco.o engine.o  
-	gcc ntetris.o campo.o bloco.o engine.o -lncurses -o programa
+	gcc ntetris.o campo.o bloco.o engine.o -lncurses -o tetris
 
 ntetris.o: ntetris.c campo.c Campo.h bloco.c Bloco.h engine.c Engine.h
 	gcc -c ntetris.c -lncurses

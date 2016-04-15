@@ -12,21 +12,26 @@
 
 #include "Estruturas.h"
 
+
 /* ENGINE.C ------------------------------------------------------------------------------------------------------------------------------- */
 
-void init_ncurses() {
+/* As funçoes comentadas sao para deixar claro que nao serão testadas visto que suas chamadas internas ja foram testadas em outros modulos */
+
+/* As que nao foram comentadas e tambem nao foram testadas, nao têm nescessidade de teste */
+
+/*void init_ncurses() {
 	initscr();
 	cbreak();
 	noecho();
 	curs_set(0);
 	set_color();
 	keypad(stdscr, TRUE);
-}
+}*/
 
-void start() {
+/*void start() {
 	show_title();
 	usleep(2000000);
-}
+}*/
 
 void get_enter() {
 	while(getch()!='\n');
@@ -57,7 +62,7 @@ void get_duration() {
 					((game.t_stop.tv_nsec - game.t_start.tv_nsec)/1E9);
 }
 
-void game_on(){
+/*void game_on(){
 	set_game();
 	show_instructions();
 	get_enter();
@@ -75,11 +80,9 @@ void game_on(){
 	get_duration();
 	show_end();
 	get_enter();
-}
+}*/
 
 /* TESTES ---------------------------------------------------------------------------------------------------------------------------------------- */
-
-
 
 void teste_DT_FimdeJogo(void){
 	currentBlock.y = 4;          /* Jogo so acaba quando uma peça passa do limite superior do campo, no caso 5 */
@@ -88,12 +91,27 @@ void teste_DT_FimdeJogo(void){
 	CU_ASSERT(resultado == 1);
 }
 
+void teste_DT_FimdeJogo2(void){
+	currentBlock.y = 6;          /* Jogo continua se a peça estiver abaixo do limite */
+	int resultado;
+	resultado = game_over();
+	CU_ASSERT(resultado == 0);
+}
 
+void teste_DT_PontuacaoInicial(void){
+	set_game();
+	int resultado;
+	resultado = game.points;
+	CU_ASSERT(resultado == 0);
+}
 
-
-
-
-
+void teste_DT_DuracaoDoJogo(void){
+	start_clock();
+	get_duration();
+	double resultado;
+	resultado = game.duration;
+	CU_ASSERT(resultado > 0);
+}
 
 
 int main(){
@@ -110,15 +128,12 @@ int main(){
       CU_cleanup_registry();
       return CU_get_error();
    }
-
    
-   if ((NULL == CU_add_test(pSuite, "teste limite inferior", teste_DT_LimiteInferiorTamanhoBloco)) ||
-       (NULL == CU_add_test(pSuite, "teste limite superior", teste_DT_LimiteSuperiorTamanhoBloco)) ||
-       (NULL == CU_add_test(pSuite, "teste direcao do bloco", teste_DT_DirecaoBloco)) ||
-       (NULL == CU_add_test(pSuite, "teste coloca bloco", teste_DT_ColocarBlocoPassandoHorizontal)) ||
-       (NULL == CU_add_test(pSuite, "teste coloca bloco", teste_DT_ColocarBlocoPassandoVertical)) ||
-       (NULL == CU_add_test(pSuite, "teste move bloco", teste_DT_MoverBloco)) ||
-       (NULL == CU_add_test(pSuite, "teste corta linha", teste_DT_CortarLinha)))
+   if ((NULL == CU_add_test(pSuite, "Testar Fim de jogo", teste_DT_FimdeJogo)) ||
+       (NULL == CU_add_test(pSuite, "Testar Fim de jogo", teste_DT_FimdeJogo2)) ||
+       (NULL == CU_add_test(pSuite, "Testar Pontuacao inicial", teste_DT_PontuacaoInicial)) ||
+       (NULL == CU_add_test(pSuite, "Testar Duracao de jogo", teste_DT_DuracaoDoJogo))
+       )
    {
       CU_cleanup_registry();
       return CU_get_error();
