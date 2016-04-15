@@ -16,6 +16,7 @@
 #include<termios.h> /* para a funcao getch_char e getch*/
 
 int main() {
+
 	char opt;
 	
 	init_ncurses();

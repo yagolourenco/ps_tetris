@@ -18,11 +18,11 @@ int put_block(int newX, int newY) {
 
 	/* Condiçoes de entrada, o bloco nao pode passar o tamanho da matriz */
 
-	if(newY > ALTURA || newY < 0){
+	if(newY >= ALTURA || newY < 0){
 		return FALSO;
 	}
 
-	if(newX > LARGURA || newX < 0){
+	if(newX >= LARGURA || newX < 0){
 		return FALSO;
 	}
 
@@ -49,22 +49,23 @@ int put_block(int newX, int newY) {
 }
 
 void new_block(){
+
 	int c = 1 + rand() % 5;
 
 	while(c == currentBlock.color) c = 1 + rand() % 5; /* Mudar a cor do bloco em relação ao anterior */
-	
-	currentBlock.color = c;
-	
+
+	currentBlock.color = c;	
+
 	currentBlock.direction = rand() % 2;  /* Varia de horizontal para vertical */
 
 	currentBlock.size = (rand() % 3) + 3; /* tamanho da peca */
 	
 	currentBlock.y = 0; /* A peça começa sempre no topo do campo */
 	
-	currentBlock.x = rand()%(LARGURA-(currentBlock.direction?0:currentBlock.size-1)); /* A peça começa em uma posicao aletario em relaçao ao eixo x dependendo se ela é horizontal ou vertical */
-	/* Na funcao acima verifica se a peça é vertical por que se for ela poderia entrar em qualquer posicao x, porem se ela for horizontal dependerá do tamanho para ela nao bater na parede */
+	currentBlock.x = rand()%(LARGURA-(currentBlock.direction?0:currentBlock.size-1)); 
 	
-	printw("x=%d\n", currentBlock.x); 
+	/*printw("x=%d\n", currentBlock.x);*/ /* Funcao comentada para nao imprimir na tela e atrapalhar a demonstracao (evitar seg fault) */
+
 	put_block(currentBlock.x, currentBlock.y);
 }
 
@@ -173,21 +174,21 @@ void any_complete_line(){
 
 void teste_DT_LimiteInferiorTamanhoBloco(void){
 	int resultado;
-	void new_block();
+	new_block();
 	resultado = currentBlock.size;
-	CU_ASSERT(resultado >= 0);
+	CU_ASSERT(resultado > 0);
 }
 
 void teste_DT_LimiteSuperiorTamanhoBloco(void){
 	int resultado;
-	void new_block();
+	new_block();
 	resultado = currentBlock.size;
 	CU_ASSERT(resultado < 6);
 }
 
 void teste_DT_DirecaoBloco(void){
 	int resultado;
-	void new_block();
+	new_block();
 	resultado = currentBlock.direction;
 	CU_ASSERT(resultado == HORIZONTAL || resultado == VERTICAL);
 }
@@ -217,6 +218,8 @@ void teste_DT_CortarLinha(void){
 }
 
 int main(){
+
+	srand(time(NULL));
 	
 	CU_pSuite pSuite = NULL;
 
