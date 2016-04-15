@@ -1,4 +1,4 @@
-all: programa limpa
+all: programa testebloco testeengine limpa
 
 programa: ntetris.o campo.o bloco.o engine.o  
 	gcc ntetris.o campo.o bloco.o engine.o -lncurses -o tetris
@@ -17,6 +17,12 @@ bloco.o: bloco.c Estruturas.h Bloco.h
 engine.o: engine.c Estruturas.h Engine.h
 	gcc -c engine.c -lncurses # -I./CUnit -L./CUnit -lcunit -o teste_engine
 	# ./teste_engine
+
+testebloco: bloco_teste.c
+	gcc bloco_teste.c -lncurses -lcunit -o testebloco
+
+testeengine: engine_teste.c
+	gcc engine_teste.c -lncurses -lcunit -o testeengine
 
 limpa:
 	rm *.o 
