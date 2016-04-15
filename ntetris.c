@@ -8,13 +8,6 @@
 //	  Hector Rocha Margittay                          |
 // ___________________________________________________|
 
-#include<ncurses.h>
-#include<time.h> /* calcular o tempo */
-#include<stdlib.h> 
-#include<unistd.h> /* para a funcao getch_char e getch*/
-#include<string.h> 
-#include<termios.h> /* para a funcao getch_char e getch*/
-
 int main() {
 
 	char opt;

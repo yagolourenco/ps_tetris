@@ -15,4 +15,3 @@ void stop_clock();
 void get_duration();
 
 void game_on();
-

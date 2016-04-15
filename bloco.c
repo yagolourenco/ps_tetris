@@ -1,9 +1,5 @@
 #include<ncurses.h>
-#include<time.h> /* calcular o tempo */
 #include<stdlib.h> 
-#include<unistd.h> /* para a funcao getch_char e getch*/
-#include<string.h> 
-#include<termios.h> 
 
 #include "Estruturas.h"	
 
@@ -18,6 +14,8 @@ int put_block(int newX, int newY) {
 	if(newX > LARGURA || newX < 0){
 		return FALSO;
 	}
+
+	/* Fim das condiçoes de entrada */
 
 	int i, dirX, dirY;
 	
