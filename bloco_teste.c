@@ -255,7 +255,7 @@ int main(){
        (NULL == CU_add_test(pSuite, "teste move bloco", teste_DT_MoverBloco)) ||
        (NULL == CU_add_test(pSuite, "teste corta linha", teste_DT_CortarLinha)) ||
        (NULL == CU_add_test(pSuite, "teste tamanho da peca", teste_DT_TamanhoPeca)) ||
-       (NULL == CU_add_test(pSuite, "teste tamanho da peca", teste_DT_LimitesLaterais)))
+       (NULL == CU_add_test(pSuite, "teste limite lateral", teste_DT_LimitesLaterais)))
    {
       CU_cleanup_registry();
       return CU_get_error();
