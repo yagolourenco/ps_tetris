@@ -11,7 +11,7 @@ Requerimentos:
 Execute o comando ```make``` no terminal para instalar o programa.
 Execute o comando ```./tetris``` para iniciar o programa.
 
-## Comandos Do Jogo
+## Comandos do Jogo
 
 ```
  [<][v][>]------> move a peça para a direita
@@ -23,7 +23,7 @@ Execute o comando ```./tetris``` para iniciar o programa.
 
 Requerimentos CUnit 2.1.2 (Siga as instrições nesse [site](https://netbeans.org/kb/docs/cnd/c-unit-test.html?print=yes#linux) caso não tenha instalado).  
 
-### Execução
+### ->Execução
 
 Execute o comando ```gcc bloco_teste.c -lncurses -lcunit -o teste``` no terminal para compilar o módulo de testes.  
 Execute o comando ```./teste``` para iniciar os testes.  
