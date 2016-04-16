@@ -6,7 +6,7 @@ Requerimentos:
 + Sistema operacional baseado em Linux (este programa foi testado no Ubuntu).
 +  Biblioteca Ncurses (use o comando ```sudo apt-get install libncurses5-dev``` caso ainda não tenha instalado).
 
-## Execução
+## Execução do Programa
 
 Execute o comando ```make``` no terminal para instalar o programa.
 Execute o comando ```./tetris``` para iniciar o programa.
@@ -23,7 +23,7 @@ Execute o comando ```./tetris``` para iniciar o programa.
 
 Requerimentos CUnit 2.1.2 (Siga as instrições nesse [site](https://netbeans.org/kb/docs/cnd/c-unit-test.html?print=yes#linux) caso não tenha instalado).  
 
-### ->Execução
+### Execução dos Testes
 
 Execute o comando ```gcc bloco_teste.c -lncurses -lcunit -o teste``` no terminal para compilar o módulo de testes.  
 Execute o comando ```./teste``` para iniciar os testes.  
