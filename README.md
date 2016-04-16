@@ -1,14 +1,5 @@
 #TETRIS (versão 1.0)
 
-## Membros
-
-+ André Luiz de Moura Ramos Bittencourt
-+ Anne Caroline de Assis Pereira
-+ Claudio Segala Rodrigues Silva Filho
-+ Hector Rocha Margittay
-
-## Descrição
-	
 Primeiro trabalho da matéria de Programação Sistemática. Nele seria necessário construir uma versão simples do famoso jogo Tetris com a utilização de Ncurses, implementar casos testes e usar Makefile.  
 Requerimentos:   
 
@@ -37,7 +28,11 @@ Requerimentos CUnit 2.1.2 (Siga as instrições nesse [site](https://netbeans.or
 Execute o comando ```gcc bloco_teste.c -lncurses -lcunit -o teste``` no terminal para compilar o módulo de testes.  
 Execute o comando ```./teste``` para iniciar os testes.  
 
+## Membros
 
-
++ André Luiz de Moura Ramos Bittencourt
++ Anne Caroline de Assis Pereira
++ Claudio Segala Rodrigues Silva Filho
++ Hector Rocha Margittay
 
 > Written with [StackEdit](https://stackedit.io/).
