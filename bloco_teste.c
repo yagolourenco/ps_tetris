@@ -217,6 +217,20 @@ void teste_DT_CortarLinha(void){
 	CU_ASSERT(resultado == FALSO);
 }
 
+void teste_DT_TamanhoPeca(void){
+	new_block();
+	int resultado;
+	resultado = currentBlock.size; 
+	CU_ASSERT(resultado <=5 && resultado >= 3);
+}
+
+void teste_DT_LimitesLaterais(void){
+	new_block();
+	int resultado;
+	resultado = currentBlock.x; 
+	CU_ASSERT(resultado < 15 && resultado >= 0);
+}
+
 int main(){
 
 	srand(time(NULL));
@@ -239,7 +253,9 @@ int main(){
        (NULL == CU_add_test(pSuite, "teste coloca bloco", teste_DT_ColocarBlocoPassandoHorizontal)) ||
        (NULL == CU_add_test(pSuite, "teste coloca bloco", teste_DT_ColocarBlocoPassandoVertical)) ||
        (NULL == CU_add_test(pSuite, "teste move bloco", teste_DT_MoverBloco)) ||
-       (NULL == CU_add_test(pSuite, "teste corta linha", teste_DT_CortarLinha)))
+       (NULL == CU_add_test(pSuite, "teste corta linha", teste_DT_CortarLinha)) ||
+       (NULL == CU_add_test(pSuite, "teste tamanho da peca", teste_DT_TamanhoPeca)) ||
+       (NULL == CU_add_test(pSuite, "teste tamanho da peca", teste_DT_LimitesLaterais)))
    {
       CU_cleanup_registry();
       return CU_get_error();
