@@ -16,5 +16,13 @@ typedef struct{
 	int color, direction, size, x, y;
 } block;
 
-tetris game;
-block currentBlock;
+typedef struct{
+	char name[11]; 	// máximo de caracteres para o nome do player é 10
+	int points;		// RESOLVE 1
+	double time;
+} player;
+
+tetris game;			// grava as informações do jogo atual
+block currentBlock;		// bloco atual
+player 	currentPlayer, 	// jogador atual
+		ranked[6]; 		// os 5 rankeados + o atual

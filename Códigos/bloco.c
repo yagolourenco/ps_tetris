@@ -1,5 +1,5 @@
-#include<ncurses.h>
-#include<stdlib.h> 
+#include <ncurses.h>
+#include <stdlib.h> 
 
 #include "Estruturas.h"	
 

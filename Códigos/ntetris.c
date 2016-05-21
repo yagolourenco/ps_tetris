@@ -8,38 +8,7 @@
 //	  Hector Rocha Margittay                          |
 // ___________________________________________________|
 
-/* Ranking */
-
-typedef struct{
-	char name[4]; // máximo de caracteres para o nome do player é 3
-	int points;
-	double time;
-} player;
-
-void rank(){
-	int invalido = 1;
-	char a;
-	player currentPlayer;
-	limpa_tela(); // a ser substituido por alguma função do Ncurses
-	if() // pontuação for maior que a do ultimo rankeado no txt
-		do{
-			printf("Diga a nos seu nome\nSo é possível ter um nome de até 3 caracteres.\n >");
-			scanf("%3s", currentPlayer.name);
-			limpa_tela();
-			printf("Seu nome é %s?\n", currentPlayer.name);
-			printf("Aperte [Y/y] para confirmar.\n");
-			a = getchar();
-			if(a == 'Y' || a == 'y')
-				invalido--;
-		}while(invalido);
-		
-}
-
-
-/* -o- */
-
 int main() {
-
 	char opt;
 	init_ncurses();
 	start();
@@ -53,7 +22,7 @@ int main() {
 		 	game_on();
 		}
 	} while(opt != '2');
-	endwin();
 	rank();
+	endwin();
 	return 0;
 }
