@@ -10,7 +10,7 @@
 #include <unistd.h> /* para a funcao getch_char e getch*/ 
 #include <termios.h> 
 
-#include "Estruturas.h"
+#include "estruturas.h"
 
 
 /* ENGINE.C ------------------------------------------------------------------------------------------------------------------------------- */

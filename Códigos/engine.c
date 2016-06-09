@@ -5,7 +5,7 @@
 #include <string.h> 
 #include <termios.h> 
 
-#include "Estruturas.h"	
+#include "estruturas.h"	
 
 void init_ncurses() {
 	initscr();

@@ -1,7 +1,7 @@
-#include<ncurses.h>
-#include<stdlib.h> 
+#include <ncurses.h>
+#include <stdlib.h> 
 
-#include "Estruturas.h"
+#include "estruturas.h"
 
 void set_color() {
 	start_color();
