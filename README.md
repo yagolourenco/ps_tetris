@@ -46,6 +46,6 @@ Requerimentos CUnit 2.1.2 (Siga as instrições nesse [site](https://netbeans.or
 + André Luiz de Moura Ramos Bittencourt
 + Claudio Segala Rodrigues Silva Filho
 + Hector Rocha Margittay
-+ Yago Pablo
++ Yago Pablo Lourenço Vaz
 
 > Written with [StackEdit](https://stackedit.io/).
