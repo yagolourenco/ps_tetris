@@ -15,7 +15,7 @@
 
 ## Descrição
 	
-Primeiro trabalho da matéria de Programação Sistemática. Nele seria necessário construir uma versão simples do famoso jogo Tetris com a utilização de Ncurses, implementar casos testes e usar Makefile.  
+Trabalho da matéria de Programação Sistemática. Nele seria necessário construir uma versão simples do famoso jogo Tetris com a utilização de ncurses, makefile e usar frameworks para criação da documentação e dos testes.  
 Requerimentos:   
 
 + Sistema operacional baseado em Linux (este programa foi testado no Ubuntu).
@@ -29,6 +29,7 @@ Execute o comando ```./tetris``` para iniciar o programa.
 ## Comandos Do Jogo
 
 ```
+	[^] --------> gira a peça
  [<][v][>]------> move a peça para a direita
   |  '----------> move a peça para baixo
   '-------------> move a peça para a esquerda
@@ -43,9 +44,8 @@ Requerimentos CUnit 2.1.2 (Siga as instrições nesse [site](https://netbeans.or
 ## Membros
 
 + André Luiz de Moura Ramos Bittencourt
-+ Anne Caroline de Assis Pereira
 + Claudio Segala Rodrigues Silva Filho
 + Hector Rocha Margittay
-
++ Yago Pablo
 
 > Written with [StackEdit](https://stackedit.io/).
