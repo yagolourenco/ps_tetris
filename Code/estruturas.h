@@ -13,8 +13,13 @@ typedef struct{
 } tetris;
 
 typedef struct{
-	int color, direction, size, x, y;
-} block;
+	int x, y;
+} loc;
+
+typedef struct{
+	loc dot[4];
+	int color, size, x, y;
+} block; 
 
 typedef struct{
 	char name[11]; 	// máximo de caracteres para o nome do player é 10

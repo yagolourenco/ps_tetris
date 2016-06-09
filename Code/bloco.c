@@ -4,6 +4,7 @@
 #include "estruturas.h"	
 
 int put_block(int newX, int newY) {
+	int i;
 
 	/* Condiçoes de entrada, o bloco nao pode passar o tamanho da matriz */
 
@@ -17,43 +18,99 @@ int put_block(int newX, int newY) {
 
 	/* Fim das condiçoes de entrada */
 
-	int i, dirX, dirY;
-	
-	if(currentBlock.direction == HORIZONTAL) {
-		dirX = 1;
-		dirY = 0;
-	}
-	else if(currentBlock.direction == VERTICAL) {
-		dirX = 0;
-		dirY = 1;
-	}
-	
-	for(i = 0; i < currentBlock.size; i++)
-		game.field[currentBlock.x + (dirX * i)][currentBlock.y + (dirY * i)] = VAZIO; /* Caso seja horizontal, começa construindo da esquerda para direita / caso seja vertical, começa de cima pra baixo. Nos dois casos preenchendo a matriz com 0*/
+	for(i = 0; i < 4; i++)
+		game.field[currentBlock.x + currentBlock.dot[i].x][currentBlock.y + currentBlock.dot[i].y] = VAZIO; /* Esvazia todas as posições na matriz que formam o bloco na sua posição atual */
 		
-	for(i = 0; i < currentBlock.size; i++)
-		game.field[newX + (dirX * i)][newY + (dirY * i)] = currentBlock.color; /* Colore a matriz com a cor do bloco */
-
-	/* Os dois laços são iguais, o primeiro preenche a matriz logicamente e o segundo visulamente */
+	for(i = 0; i < 4; i++)
+		game.field[newX + currentBlock.dot[i].x][newY + currentBlock.dot[i].y] = currentBlock.color; /*  Preenche todas as posições na matriz que formam o bloco na sua nova posição */
 
 	return 0;
 }
 
 void new_block(){
 
-	int c = 1 + rand() % 5;
+	int c = 1 + rand() % 5, type = rand() % 7;
 
 	while(c == currentBlock.color) c = 1 + rand() % 5; /* Mudar a cor do bloco em relação ao anterior */
 	
 	currentBlock.color = c;
 	
-	currentBlock.direction = rand() % 2;  /* Varia de horizontal para vertical */
-
-	currentBlock.size = (rand() % 3) + 3; /* tamanho da peca */
+	}
+	switch(type) {
+		case 0:	currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 0;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 0;
+				currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 1;
+				currentBlock.size = 2;
+				break;
+		case 1:	currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 2;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 2;
+				currentBlock.size = 3;
+				break;
+		case 2:	currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 2;
+				currentBlock.dot[i].x = 2;
+				currentBlock.dot[i].y = 2;
+				currentBlock.size = 3;
+				break;
+		case 3:	currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 2;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 2;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 2;
+				currentBlock.size = 3;
+				break;
+		case 4:	currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 0;
+				currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 2;
+				currentBlock.dot[i].y = 1;
+				currentBlock.size = 2;
+				break;
+		case 5:	currentBlock.dot[i].x = 2;
+				currentBlock.dot[i].y = 0;
+				currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 2;
+				currentBlock.dot[i].y = 1;
+				currentBlock.size = 2;
+				break;
+		case 6:	currentBlock.dot[i].x = 0;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 1;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 2;
+				currentBlock.dot[i].y = 1;
+				currentBlock.dot[i].x = 3;
+				currentBlock.dot[i].y = 1;
+				currentBlock.size = 4;
+	}
 	
 	currentBlock.y = 0; /* A peça começa sempre no topo do campo */
 	
-	currentBlock.x = rand()%(LARGURA-(currentBlock.direction?0:currentBlock.size-1)); /* A peça começa em uma posicao aletario em relaçao ao eixo x dependendo se ela é horizontal ou vertical */
+	currentBlock.x = rand()%(LARGURA-currentBlock.size-1); /* A peça começa em uma posicao aletario em relaçao ao eixo x dependendo se ela é horizontal ou vertical */
 	/* Na funcao acima verifica se a peça é vertical por que se for ela poderia entrar em qualquer posicao x, porem se ela for horizontal dependerá do tamanho para ela nao bater na parede */
 	
 	printw("x=%d\n", currentBlock.x); 
@@ -66,23 +123,14 @@ int collision(int deslocX, int deslocY) {
 	origX = currentBlock.x;
 	origY = currentBlock.y;
 
-	if(currentBlock.direction == HORIZONTAL) {
-		dirX = 1;
-		dirY = 0;
-	}
-	else if(currentBlock.direction == VERTICAL) {
-		dirX = 0;
-		dirY = 1;
-	}
-
-	for(i = 0 ; i < currentBlock.size ; i++) {
-		x = origX + (dirX * i) + deslocX;
-		y = origY + (dirY * i) + deslocY;
+	for(i = 0 ; i < 4 ; i++) {
+		x = origX + currentBlock.dot[i].x + deslocX;
+		y = origY + currentBlock.dot[i].y + deslocY;
 		if(x >= 0 && x < LARGURA && y >= 0 && y < ALTURA) {
 			if(game.field[x][y] != VAZIO) {
 				check = 0;
-				for(j = 0 ; j < currentBlock.size ; j++) {
-					if(x == origX + (dirX * j) && y == origY + (dirY * j))
+				for(j = 0 ; j < 4 ; j++) {
+					if((x == origX + currentBlock.dot[j].x) && (y == origY + currentBlock.dot[j].y))
 						check = 1;
 				}
 				if(check == 0)
@@ -101,14 +149,12 @@ int move_block(int opt){
 	int newX = currentBlock.x, newY = currentBlock.y;
 	
 	if(opt == KEY_DOWN){ /* move para baixo */ 
-		while(!collision(0, 1)) {
-			newY++;
-			put_block(newX, newY);
-			currentBlock.x = newX;
-			currentBlock.y = newY;	
-			show_field();
-			usleep(5000);
-		}
+		newY++;
+		put_block(newX, newY);
+		currentBlock.x = newX;
+		currentBlock.y = newY;	
+		show_field();
+		usleep(5000);
 	}
 	else if(opt == KEY_RIGHT){ /* move para direita */ 
 		if(!collision(1, 0))
@@ -127,6 +173,37 @@ int move_block(int opt){
 		currentBlock.x = newX;
 		currentBlock.y = newY;	
 	}
+
+	return 0;
+}
+
+int spin_block() {
+	block aux1 = currentBlock, aux2;
+	int i, j, check;
+
+	for(i=0;i<4;i++) {
+		aux1.dot[i].x = currentBlock.dot[i].y;
+		aux1.dot[i].y = currentBlock.dot[i].x;
+	}
+	aux2 = aux1;
+	for(i=0;i<4;i++)
+		aux2.dot[i].x = currentBlock.size-1-aux2.dot.x;
+
+	for(i=0;i<4;i++) {
+		if(aux2.x + aux2.dot[i].x >= 0 && aux2.x + aux2.dot[i].x < LARGURA && aux2.y + aux2.dot[i].y >= 0 && aux2.y + aux2.dot[i].y < ALTURA)
+			if(game.field[aux2.x + aux2.dot[i].x][aux2.y + aux2.dot[i].y] != VAZIO) {
+				check = 0;
+				for(j = 0 ; j < 4 ; j++)
+					if((aux2.dot[i].x == currentBlock.dot[j].x) && (aux2.dot[i].y == currentBlock.dot[j].y))
+						check = 1;
+				if(check == 0)
+					return 1;
+			}
+		else
+			return 1;
+	}
+
+	currentBlock = aux2;
 
 	return 0;
 }

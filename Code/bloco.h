@@ -8,4 +8,6 @@ int move_block(int);
 
 int cut_this_line(int);
 
+int spin_block();
+
 void any_complete_line();
