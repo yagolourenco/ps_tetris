@@ -26,3 +26,6 @@ testeengine: engine_teste.c
 
 limpa:
 	rm *.o 
+
+# Para checar erros usamos o codigo abaixo no terminal
+# splint *.c *.h -weak +infloops +compdef +sysdirerrors

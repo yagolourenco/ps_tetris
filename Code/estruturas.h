@@ -1,3 +1,15 @@
+#include "CUnit/CUnit.h"
+#include "CUnit/Basic.h"
+
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
+#include <ncurses.h>
+#include <unistd.h> /* para a funcao getch_char e getch*/ 
+#include <termios.h> 
+
 #define LARGURA 15
 #define ALTURA 25
 #define LIMITE 5

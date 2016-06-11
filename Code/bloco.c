@@ -1,6 +1,3 @@
-#include <ncurses.h>
-#include <stdlib.h> 
-
 #include "estruturas.h"	
 
 int put_block(int newX, int newY) {
