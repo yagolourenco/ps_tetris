@@ -59,7 +59,7 @@ bool isItRanked(){
 
 	for(i = 0; i < 5; i++){
 		
-		fscanf(Rank, "%[^\n] ", &ranked[i].name);
+		fscanf(Rank, "%[^\n] ", ranked[i].name);
 		
 		fscanf(Rank, "%d ", &ranked[i].points);
 
