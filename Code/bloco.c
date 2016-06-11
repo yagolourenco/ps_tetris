@@ -1,3 +1,6 @@
+#include <ncurses.h>
+#include <stdlib.h> 
+
 #include "estruturas.h"	
 
 int put_block(int newX, int newY) {
@@ -20,7 +23,10 @@ int put_block(int newX, int newY) {
 		
 	for(i = 0; i < 4; i++)
 		game.field[newX + currentBlock.dot[i].x][newY + currentBlock.dot[i].y] = currentBlock.color; /*  Preenche todas as posições na matriz que formam o bloco na sua nova posição */
-
+	
+	currentBlock.x = newX;
+	currentBlock.y = newY;
+	
 	return 0;
 }
 
@@ -32,76 +38,75 @@ void new_block(){
 	
 	currentBlock.color = c;
 	
-	}
 	switch(type) {
-		case 0:	currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 0;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 0;
-				currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 1;
+		case 0:	currentBlock.dot[0].x = 0;
+				currentBlock.dot[0].y = 0;
+				currentBlock.dot[1].x = 1;
+				currentBlock.dot[1].y = 0;
+				currentBlock.dot[2].x = 0;
+				currentBlock.dot[2].y = 1;
+				currentBlock.dot[3].x = 1;
+				currentBlock.dot[3].y = 1;
 				currentBlock.size = 2;
 				break;
-		case 1:	currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 2;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 2;
+		case 1:	currentBlock.dot[0].x = 0;
+				currentBlock.dot[0].y = 1;
+				currentBlock.dot[1].x = 1;
+				currentBlock.dot[1].y = 1;
+				currentBlock.dot[2].x = 2;
+				currentBlock.dot[2].y = 1;
+				currentBlock.dot[3].x = 1;
+				currentBlock.dot[3].y = 2;
 				currentBlock.size = 3;
 				break;
-		case 2:	currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 2;
-				currentBlock.dot[i].x = 2;
-				currentBlock.dot[i].y = 2;
+		case 2:	currentBlock.dot[0].x = 0;
+				currentBlock.dot[0].y = 1;
+				currentBlock.dot[1].x = 1;
+				currentBlock.dot[1].y = 1;
+				currentBlock.dot[2].x = 1;
+				currentBlock.dot[2].y = 2;
+				currentBlock.dot[3].x = 2;
+				currentBlock.dot[3].y = 2;
 				currentBlock.size = 3;
 				break;
-		case 3:	currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 2;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 2;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 2;
+		case 3:	currentBlock.dot[0].x = 1;
+				currentBlock.dot[0].y = 1;
+				currentBlock.dot[1].x = 2;
+				currentBlock.dot[1].y = 1;
+				currentBlock.dot[2].x = 0;
+				currentBlock.dot[2].y = 2;
+				currentBlock.dot[3].x = 1;
+				currentBlock.dot[3].y = 2;
 				currentBlock.size = 3;
 				break;
-		case 4:	currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 0;
-				currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 2;
-				currentBlock.dot[i].y = 1;
+		case 4:	currentBlock.dot[0].x = 0;
+				currentBlock.dot[0].y = 0;
+				currentBlock.dot[1].x = 0;
+				currentBlock.dot[1].y = 1;
+				currentBlock.dot[2].x = 1;
+				currentBlock.dot[2].y = 1;
+				currentBlock.dot[3].x = 2;
+				currentBlock.dot[3].y = 1;
 				currentBlock.size = 2;
 				break;
-		case 5:	currentBlock.dot[i].x = 2;
-				currentBlock.dot[i].y = 0;
-				currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 2;
-				currentBlock.dot[i].y = 1;
+		case 5:	currentBlock.dot[0].x = 2;
+				currentBlock.dot[0].y = 0;
+				currentBlock.dot[1].x = 0;
+				currentBlock.dot[1].y = 1;
+				currentBlock.dot[2].x = 1;
+				currentBlock.dot[2].y = 1;
+				currentBlock.dot[3].x = 2;
+				currentBlock.dot[3].y = 1;
 				currentBlock.size = 2;
 				break;
-		case 6:	currentBlock.dot[i].x = 0;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 1;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 2;
-				currentBlock.dot[i].y = 1;
-				currentBlock.dot[i].x = 3;
-				currentBlock.dot[i].y = 1;
+		case 6:	currentBlock.dot[0].x = 0;
+				currentBlock.dot[0].y = 1;
+				currentBlock.dot[1].x = 1;
+				currentBlock.dot[1].y = 1;
+				currentBlock.dot[2].x = 2;
+				currentBlock.dot[2].y = 1;
+				currentBlock.dot[3].x = 3;
+				currentBlock.dot[3].y = 1;
 				currentBlock.size = 4;
 	}
 	
@@ -115,19 +120,19 @@ void new_block(){
 }
 
 int collision(int deslocX, int deslocY) {
-	int i, j, origX, origY, dirX, dirY, x, y, check;
+	int i, j, origX, origY, dirX, dirY, newX, newY, check;
 	
 	origX = currentBlock.x;
 	origY = currentBlock.y;
 
 	for(i = 0 ; i < 4 ; i++) {
-		x = origX + currentBlock.dot[i].x + deslocX;
-		y = origY + currentBlock.dot[i].y + deslocY;
-		if(x >= 0 && x < LARGURA && y >= 0 && y < ALTURA) {
-			if(game.field[x][y] != VAZIO) {
+		newX = origX + currentBlock.dot[i].x + deslocX;
+		newY = origY + currentBlock.dot[i].y + deslocY;
+		if(newX >= 0 && newX < LARGURA && newY >= 0 && newY < ALTURA) {
+			if(game.field[newX][newY] != VAZIO) {
 				check = 0;
 				for(j = 0 ; j < 4 ; j++) {
-					if((x == origX + currentBlock.dot[j].x) && (y == origY + currentBlock.dot[j].y))
+					if((newX == origX + currentBlock.dot[j].x) && (newY == origY + currentBlock.dot[j].y))
 						check = 1;
 				}
 				if(check == 0)
@@ -141,18 +146,58 @@ int collision(int deslocX, int deslocY) {
 	return 0;
 }
 
-int move_block(int opt){
+int spin_block() {
+	block new, aux = currentBlock;
+	int i, j, newX, newY, check;
 
+	for( i = 0 ; i < 4 ; i++) {
+		aux.dot[i].x = currentBlock.dot[i].y;
+		aux.dot[i].y = currentBlock.dot[i].x;
+	}
+	new = aux;
+	for( i = 0 ; i < 4 ; i++)
+		new.dot[i].x = (currentBlock.size-1)-aux.dot[i].x;
+
+	for(i=0;i<4;i++) {
+		newX = new.x + new.dot[i].x;
+		newY = new.y + new.dot[i].y;
+		if(newX >= 0 && newX < LARGURA && newY >= 0 && newY < ALTURA) {
+			if(game.field[newX][newY] != VAZIO) {
+				check = 0;
+				for(j = 0 ; j < 4 ; j++)
+					if((new.dot[i].x == currentBlock.dot[j].x) && (new.dot[i].y == currentBlock.dot[j].y))
+						check = 1;
+				if(check == 0)
+					return 1;
+			}
+		}
+		else
+			return 1;
+	}
+	
+	for(i = 0; i < 4; i++)
+		game.field[currentBlock.x + currentBlock.dot[i].x][currentBlock.y + currentBlock.dot[i].y] = VAZIO; /* Esvazia todas as posições na matriz que formam o bloco na sua posição atual */
+			
+	currentBlock = new;
+	
+	for(i = 0; i < 4; i++)
+		game.field[currentBlock.x + currentBlock.dot[i].x][currentBlock.y + currentBlock.dot[i].y] = currentBlock.color; /*  Preenche todas as posições na matriz que formam o bloco na sua nova posição */
+
+	return 0;
+}
+
+int move_block(int opt){
 	int newX = currentBlock.x, newY = currentBlock.y;
 	
-	if(opt == KEY_DOWN){ /* move para baixo */ 
-		newY++;
-		put_block(newX, newY);
-		currentBlock.x = newX;
-		currentBlock.y = newY;	
-		show_field();
-		usleep(5000);
-	}
+	if(currentBlock.gravity >= GRAVITYMAX)
+		if(!collision(0, 1)) {
+			newY++;
+			currentBlock.gravity -= GRAVITYMAX;
+		}
+	currentBlock.gravity++;
+	
+	if(opt == KEY_DOWN) /* move para baixo */ 
+		currentBlock.gravity++;
 	else if(opt == KEY_RIGHT){ /* move para direita */ 
 		if(!collision(1, 0))
 			newX++;	
@@ -161,46 +206,13 @@ int move_block(int opt){
 		if(!collision(-1, 0))
 			newX--;	
 	}
-	else{
+	else if(opt == KEY_UP) /* gira o bloco no sentido horario */ 
+		spin_block();
+	else
 		return FALSO;
-	}
 	
-	if(newX != currentBlock.x || newY != currentBlock.y) {
+	if(newX != currentBlock.x || newY != currentBlock.y)
 		put_block(newX, newY);
-		currentBlock.x = newX;
-		currentBlock.y = newY;	
-	}
-
-	return 0;
-}
-
-int spin_block() {
-	block aux1 = currentBlock, aux2;
-	int i, j, check;
-
-	for(i=0;i<4;i++) {
-		aux1.dot[i].x = currentBlock.dot[i].y;
-		aux1.dot[i].y = currentBlock.dot[i].x;
-	}
-	aux2 = aux1;
-	for(i=0;i<4;i++)
-		aux2.dot[i].x = currentBlock.size-1-aux2.dot.x;
-
-	for(i=0;i<4;i++) {
-		if(aux2.x + aux2.dot[i].x >= 0 && aux2.x + aux2.dot[i].x < LARGURA && aux2.y + aux2.dot[i].y >= 0 && aux2.y + aux2.dot[i].y < ALTURA)
-			if(game.field[aux2.x + aux2.dot[i].x][aux2.y + aux2.dot[i].y] != VAZIO) {
-				check = 0;
-				for(j = 0 ; j < 4 ; j++)
-					if((aux2.dot[i].x == currentBlock.dot[j].x) && (aux2.dot[i].y == currentBlock.dot[j].y))
-						check = 1;
-				if(check == 0)
-					return 1;
-			}
-		else
-			return 1;
-	}
-
-	currentBlock = aux2;
 
 	return 0;
 }

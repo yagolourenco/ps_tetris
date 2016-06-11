@@ -1,3 +1,10 @@
+#include <ncurses.h>
+#include <time.h> /* calcular o tempo */
+#include <stdlib.h> 
+#include <unistd.h> /* para a funcao getch_char e getch*/
+#include <string.h> 
+#include <termios.h> 
+
 #include "estruturas.h"	
 
 void init_ncurses() {
@@ -7,6 +14,7 @@ void init_ncurses() {
 	curs_set(0);
 	set_color();
 	keypad(stdscr, TRUE);
+	halfdelay(2);
 }
 
 void start() {
@@ -29,7 +37,7 @@ void start_clock() {
 }
 
 int game_over(){
-	if(currentBlock.y < LIMITE) return 1;
+	if(collision(0,1) && currentBlock.y < LIMITE) return 1;
 	return 0;
 }
 
@@ -51,9 +59,11 @@ void game_on(){
 	start_clock();
 	do{
 		new_block();
+		currentBlock.gravity = 10;
 		do {
 			show_field();
 			move_block(getch());
+			move_block(KEY_DOWN);
 		} while(!collision(0,1));
 		show_field();
 		any_complete_line();
