@@ -1,0 +1,1 @@
+/* Não existe nenhuma função desse módulo que precisa de teste */
