@@ -19,7 +19,8 @@ Trabalho da matéria de Programação Sistemática. Nele seria necessário const
 Requerimentos:   
 
 + Sistema operacional baseado em Linux (este programa foi testado no Ubuntu).
-+  Biblioteca Ncurses (use o comando ```sudo apt-get install libncurses5-dev``` caso ainda não tenha instalado).
++ Biblioteca Ncurses (use o comando ```sudo apt-get install libncurses5-dev``` caso ainda não tenha instalado).
++ Splint para confirmar a não existência de erros no programa.
 
 ## Execução
 
