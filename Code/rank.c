@@ -10,9 +10,9 @@ void sortRank(){
 		for(int i = 0, i < 6; i++)
 			if(ranked[i].points < ranked[i+1].points || (ranked[i].points == ranked[i+1].points && ranked[i].time > ranked[i+1].time) ){
 				player aux;
-				aux = ranked[x];
-				ranked[x] = ranked[y];
-				ranked[y] = aux;
+				aux = ranked[i];
+				ranked[i] = ranked[i+1];
+				ranked[i+1] = aux;
 				cnt++;
 			}	
 	}while(cnt);
