@@ -1,3 +1,11 @@
+#include <ncurses.h>
+#include <time.h> /* calcular o tempo */
+#include <stdio.h>
+#include <stdlib.h> 
+#include <unistd.h> /* para a funcao getch_char e getch*/
+#include <string.h> 
+#include <termios.h> 
+
 #define LARGURA 15
 #define ALTURA 25
 #define LIMITE 5
