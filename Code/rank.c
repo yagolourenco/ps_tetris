@@ -19,14 +19,25 @@ void sortRank(){
 }
 
 void newRankFile(){
-	// RESOLVE 4
-	// basta reescrever o arquivo com os novos 5 primeiros
+	
+	FILE *arq = fopen("ranking.txt", "wb+");
+
+	if(arq == NULL){
+		printf("Falha ao criar arquivo\n");
+		return 0;
+	}
+
+	for(int i = 0; i < 5; i++){
+
+		
+	}
+
 }
 
 bool isItRanked(){
-	FILE *fp = fopen("ranking.txt", "r"); 	// r é para leitura
-	if(fp == NULL){
-		fp = fopen("ranking.txt", "w");		//cria arquivo
+	FILE *Rank = fopen("ranking.txt", "r"); 	// r é para leitura
+	if(Rank == NULL){
+		Rank = fopen("ranking.txt", "w");		//cria arquivo
 		for(int i = 0; i < 6; i++){
 			if(i == 0)		ranked[i].name = "QUEM";
 			else if(i == 1)	ranked[i].name = "SERA";
@@ -40,9 +51,15 @@ bool isItRanked(){
 		newRankFile();
 	}
 	for(int i = 0; i < 5, i++){
-		// RESOLVE 4
-		// le do arquivo e coloca os 5 rankeados no ranked[i]
+		
+		fscanf(Rank, "%[^\n] ", &v[i].name);
+		
+		fscanf(Rank, "%d ", &v[i].points);
+
+		fscanf(Rank, "%lf ", &v[i].time);
+
 	}
+
 	ranked[6].name = currentPlayer.name;
 	ranked[6].points = currentPlayer.points;
 	ranked[6].time = currentPlayer.time;
