@@ -7,7 +7,7 @@ void sortRank(){
 	int cnt;
 	do{
 		cnt = 0;
-		for(int i = 0, i < 6; i++)
+		for(int i = 0, i < 5; i++)
 			if(ranked[i].points < ranked[i+1].points || (ranked[i].points == ranked[i+1].points && ranked[i].time > ranked[i+1].time) ){
 				player aux;
 				aux = ranked[i];
