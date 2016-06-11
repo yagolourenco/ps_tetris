@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "estruturas.h"
+
 void sortRank(){
 	int cnt;
 	do{
@@ -37,6 +39,7 @@ void newRankFile(){
 
 bool isItRanked(){
 	FILE *Rank = fopen("ranking.txt", "r"); 	// r é para leitura
+
 	if(Rank == NULL){
 		Rank = fopen("ranking.txt", "w");		//cria arquivo
 		for(int i = 0; i < 6; i++){
@@ -51,6 +54,7 @@ bool isItRanked(){
 		}
 		newRankFile();
 	}
+
 	for(int i = 0; i < 5, i++){
 		
 		fscanf(Rank, "%[^\n] ", &v[i].name);
@@ -61,13 +65,13 @@ bool isItRanked(){
 
 	}
 
-	ranked[6].name = currentPlayer.name;
-	ranked[6].points = currentPlayer.points;
-	ranked[6].time = currentPlayer.time;
+	ranked[5].name = currentPlayer.name;
+	ranked[5].points = currentPlayer.points;
+	ranked[5].time = currentPlayer.time;
 	sortRank();
-	if( strcomp(ranked[6].name == currentPlayer.name)    &&
-				ranked[6].points == currentPlayer.points &&
-				ranked[6].time == currentPlayer.time ) // se o ultimo player continuar la em baixo
+	if( strcomp(ranked[5].name == currentPlayer.name)    &&
+				ranked[5].points == currentPlayer.points &&
+				ranked[5].time == currentPlayer.time ) // se o ultimo player continuar la em baixo
 		return False;
 	return True;
 }
