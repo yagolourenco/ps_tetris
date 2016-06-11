@@ -1,7 +1,7 @@
-all: programa testeBloco testeEngine testeRank limpa
+all: programa limpa
 
 programa: ntetris.o campo.o bloco.o engine.o rank.o
-	gcc ntetris.o campo.o bloco.o engine.o -lncurses -o tetris
+	gcc ntetris.o campo.o bloco.o engine.o rank.o -lncurses -o tetris
 
 ntetris.o: ntetris.c campo.c campo.h bloco.c bloco.h engine.c engine.h rank.c rank.h estruturas.h 
 	gcc -c ntetris.c -lncurses # -o teste
@@ -21,15 +21,6 @@ engine.o: engine.c estruturas.h engine.h
 rank.o: rank.c estruturas.h rank.h
 	gcc -c rank.c -lncurses # -I./CUnit -L./CUnit -lcunit -o teste_rank
 	# ./teste_rank
-
-testeBloco: bloco_teste.c
-	gcc bloco_teste.c -lncurses -lcunit -o teste_bloco
-
-testeEngine: engine_teste.c
-	gcc engine_teste.c -lncurses -lcunit -o teste_engine
-
-testeRank: rank_teste.c
-	gcc rank_teste.c -lncurses -lcunit -o teste_rank
 
 limpa:
 	rm *.o 

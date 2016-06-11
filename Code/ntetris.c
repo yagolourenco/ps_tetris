@@ -10,8 +10,8 @@
 
 #include "estruturas.h"
 
-int main() {
-	char opt;
+int main() {	
+	char opt;		
 	init_ncurses();
 	start();
 	get_enter();
