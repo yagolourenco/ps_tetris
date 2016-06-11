@@ -8,6 +8,8 @@
 //	  Hector Rocha Margittay                          |
 // ___________________________________________________|
 
+#include "estruturas.h"
+
 int main() {
 	char opt;
 	init_ncurses();

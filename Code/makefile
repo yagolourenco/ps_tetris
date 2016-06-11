@@ -3,7 +3,7 @@ all: programa testeBloco testeEngine testeRank limpa
 programa: ntetris.o campo.o bloco.o engine.o rank.o
 	gcc ntetris.o campo.o bloco.o engine.o -lncurses -o tetris
 
-ntetris.o: ntetris.c campo.c campo.h bloco.c bloco.h engine.c engine.h rank.c rank.h
+ntetris.o: ntetris.c campo.c campo.h bloco.c bloco.h engine.c engine.h rank.c rank.h estruturas.h 
 	gcc -c ntetris.c -lncurses # -o teste
 	# ./teste
 
