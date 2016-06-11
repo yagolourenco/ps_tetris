@@ -1,7 +1,5 @@
 // RESOLVE 5
-#include <stdlib.h> // RESOLVE 2
-#include <stdio.h>
-#include <string.h>
+#include "estruturas.h"
 
 #include "estruturas.h"
 
