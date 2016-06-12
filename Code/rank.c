@@ -33,7 +33,6 @@ void newRankFile(){
 		fprintf(arq , "%d\n", ranked[i].points);
 		fprintf(arq , "%lf\n", ranked[i].time);
 	}
-
 }
 
 bool isItRanked(){
@@ -93,9 +92,10 @@ void rank(){
 
 	printw("Diga vos seu nome!\nConsigo ler um nome de até 3 caracteres.\n >");
 	
-	scanf(" %s", ranked[5].name);
+	scanw("%s",ranked[5].name);
 
 	ranked[5].points = game.points;
+
 	ranked[5].time = game.duration;
 
 	if(isItRanked()){ // pontuação for maior que a do ultimo rankeado no txt
