@@ -4,11 +4,7 @@ void new_block();
 
 int collision(int, int);
 
-void spin_block();
-
 int move_block(int);
-
-void apply_gravity();
 
 int cut_this_line(int);
 

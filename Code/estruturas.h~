@@ -33,7 +33,7 @@ typedef struct{
 	int color, 							// cor da peça
 		size, 							// serve para saber o tamanho da matriz simulada para o giro e a movimentação das peças
 		x, y, 							// coordenadas da matriz simulada para girar e mover a peça
-		gravSpeed,						// guarda a velocidade da gravidade
+		gravSpeed;						// guarda a velocidade da gravidade
 		gravTimer;						// atualiza a posição vertical da peça de acordo com a sua velocidade
 } block;
 

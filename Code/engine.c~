@@ -55,6 +55,7 @@ void game_on(){
 		currentBlock.gravSpeed = 1;
 		currentBlock.gravTimer = 0;
 		do {
+			game.points++;
 			show_field();
 			move_block(getch());
 			apply_gravity();

@@ -80,7 +80,7 @@ void show_field(){
 	int x, y;
 	create_border();
 	attron(COLOR_PAIR(8));
-	mvprintw(0, 11, "%07d x%d y%d", game.points, currentBlock.x, currentBlock.y);
+	mvprintw(0, 11, "%07d %d", game.points, currentBlock.gravTimer);
 	attroff(COLOR_PAIR(8));
     for(y = 0; y < ALTURA; y++)
 		for(x = 0; x < LARGURA; x++) {
