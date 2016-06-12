@@ -17,6 +17,7 @@ void sortRank(){
 	}while(cnt);
 }
 
+// Atualiza o arquivo ranking.txt
 void newRankFile(){
 	int i;
 	FILE *Rank = fopen("ranking.txt", "w+");
