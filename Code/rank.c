@@ -48,6 +48,28 @@ void fillFile(FILE* Rank){
 	fprintf(Rank, "%4s %d %lf\n", "Cdio", 0, 0.0);
 	fprintf(Rank, "%4s %d %lf\n", "Bugr", 0, 0.0);
 	fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
+
+	strcpy(ranked[0].name,"Hect");
+	ranked[0].points = 0;
+	ranked[0].time = 0.0;
+
+	strcpy(ranked[1].name,"Cris");
+	ranked[1].points = 0;
+	ranked[1].time = 0.0;
+
+	strcpy(ranked[2].name,"Cdio");
+	ranked[2].points = 0;
+	ranked[2].time = 0.0;
+
+	strcpy(ranked[3].name,"Bugr");
+	ranked[3].points = 0;
+	ranked[3].time = 0.0;
+
+	strcpy(ranked[4].name, ranked[5].name);
+	ranked[4].points = ranked[5].points;
+	ranked[4].time = ranked[5].time;
+
+
 }
 
 bool isItRanked(){
