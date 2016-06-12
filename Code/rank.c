@@ -74,8 +74,10 @@ bool isItRanked(){
 
 void show_rank(){
 	FILE *Rank = fopen("ranking.txt", "r");
-	if(Rank == NULL)
+	if(Rank == NULL){
+		Rank = fopen("ranking.txt", "w+");		//cria arquivo
 		fillFile(Rank);
+	}
 	readFile(Rank);
 	fclose(Rank);
 	Rank = NULL;
