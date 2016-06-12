@@ -18,9 +18,9 @@ void sortRank(){
 
 void newRankFile(){
 	int i;
-	FILE *arq = fopen("ranking.txt", "w+");
+	FILE *Rank = fopen("ranking.txt", "w+");
 
-	if(arq == NULL){
+	if(Rank == NULL){
 		printw("Falha ao criar arquivo\n");
 		return;
 	}
@@ -49,9 +49,10 @@ bool isItRanked(){
 
 	sortRank();
 
-	if(strcmp(ranked[5].name, aux.name) == 0    &&
-				ranked[5].points == aux.points &&
-				ranked[5].time == aux.time ) // se o ultimo player continuar la em baixo
+	// Verifica se o último player continuar o mesmo
+	if(strcmp(ranked[5].name, aux.name) == 0  &&
+			  ranked[5].points == aux.points  &&
+			  ranked[5].time == aux.time )
 		return false;
 	return true;
 }
