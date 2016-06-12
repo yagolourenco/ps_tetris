@@ -34,7 +34,7 @@ void newRankFile(){
 	Rank = NULL;
 }
 
-void readFile(){
+void readFile(FILE* Rank){
 	int i = 0;
 	while(!feof(Rank)){
 		fscanf(Rank, "%4s %d %lf\n", ranked[i].name, &ranked[i].points, &ranked[i].time); // le enquanto nao for fim de arquivo
@@ -55,7 +55,7 @@ bool isItRanked(){
 		fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
 	}
 
-	readFile();
+	readFile(Rank);
 	sortRank();
 	fclose(Rank);
 	Rank = NULL;
@@ -70,7 +70,9 @@ bool isItRanked(){
 
 void show_rank(){
 	FILE *Rank = fopen("ranking.txt", "r");
-	readFile();
+	readFile(Rank);
+	fclose(Rank);
+	Rank = NULL;
 	clear();
 	printw("Ranking:\n");
 	int i;
