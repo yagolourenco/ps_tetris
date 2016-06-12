@@ -42,17 +42,21 @@ void readFile(FILE* Rank){
 	}
 }
 
+void fillFile(FILE* Rank){
+	fprintf(Rank, "%4s %d %lf\n", "Hect", 0, 0.0);
+	fprintf(Rank, "%4s %d %lf\n", "Cris", 0, 0.0);
+	fprintf(Rank, "%4s %d %lf\n", "Cdio", 0, 0.0);
+	fprintf(Rank, "%4s %d %lf\n", "Bugr", 0, 0.0);
+	fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
+}
+
 bool isItRanked(){
 	player aux = ranked[5];
 	FILE *Rank = fopen("ranking.txt", "r"); 	// r é para leitura
 
 	if(Rank == NULL){
 		Rank = fopen("ranking.txt", "w+");		//cria arquivo
-		fprintf(Rank, "%4s %d %lf\n", "Hect", 0, 0.0);
-		fprintf(Rank, "%4s %d %lf\n", "Cris", 0, 0.0);
-		fprintf(Rank, "%4s %d %lf\n", "Cdio", 0, 0.0);
-		fprintf(Rank, "%4s %d %lf\n", "Bugr", 0, 0.0);
-		fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
+		fillFile(Rank);
 	}
 
 	readFile(Rank);
@@ -70,6 +74,8 @@ bool isItRanked(){
 
 void show_rank(){
 	FILE *Rank = fopen("ranking.txt", "r");
+	if(Rank == NULL)
+		fillFile(Rank);
 	readFile(Rank);
 	fclose(Rank);
 	Rank = NULL;
