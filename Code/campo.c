@@ -52,7 +52,8 @@ void show_menu() {
 	printw("|________________|\n");
 	attroff(A_BOLD | COLOR_PAIR(4));
 	mvchgat(2, 8, 5, A_BOLD, 7, NULL);
-	mvchgat(6, 8, 4, A_BOLD, 1, NULL);
+	mvchgat(6, 8, 4, A_BOLD, 3, NULL);
+	mvchgat(10, 8, 4, A_BOLD, 1, NULL);
 	refresh();
 }
 
