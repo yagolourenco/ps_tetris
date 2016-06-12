@@ -76,7 +76,7 @@ void rank(){
 
 	clear();
 
-	printw("Diga vos seu nome!\nConsigo ler um nome de até 3 caracteres.\n >");
+	printw("Diga vos seu nome!\nConsigo ler um nome de até 4 caracteres.\n >");
 	
 	scanw("%4s",ranked[5].name);
 
