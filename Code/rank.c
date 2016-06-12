@@ -37,10 +37,10 @@ bool isItRanked(){
 
 	if(Rank == NULL){
 		Rank = fopen("ranking.txt", "w+");		//cria arquivo
-		fprintf(Rank, "%4s %d %lf\n", "Hect", 100, 10.0);
-		fprintf(Rank, "%4s %d %lf\n", "Cris", 100, 9.0);
-		fprintf(Rank, "%4s %d %lf\n", "Cdio", 100, 8.0);
-		fprintf(Rank, "%4s %d %lf\n", "Bugr", 100, 7.0);
+		fprintf(Rank, "%4s %d %lf\n", "Hect", 0, 0.0);
+		fprintf(Rank, "%4s %d %lf\n", "Cris", 0, 0.0);
+		fprintf(Rank, "%4s %d %lf\n", "Cdio", 0, 0.0);
+		fprintf(Rank, "%4s %d %lf\n", "Bugr", 0, 0.0);
 		fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
 	}
 
