@@ -1,5 +1,6 @@
 #include "estruturas.h"
 
+/* função para colocar dor no ncurses */
 void set_color() {
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLACK);
@@ -12,7 +13,7 @@ void set_color() {
 	init_pair(8, COLOR_BLACK, COLOR_WHITE);
 }
 
-
+/* função que mostra a tele de início do jogo */
 void show_title(){
 	int i;
 	clear();
@@ -35,6 +36,7 @@ void show_title(){
 	refresh();
 }
 
+/* função que mostra a tela de menu */
 void show_menu() {
 	clear();
 	attron(A_BOLD | COLOR_PAIR(4));
@@ -57,10 +59,13 @@ void show_menu() {
 	refresh();
 }
 
+/* função que mostra as intruções do tetris */
 void show_instructions(){
 	clear();
-	printw(" Use as teclas [<], [V] e [>] para mover as pecas\n\n");
-	printw("           Aperte [ENTER] para continuar\n");
+	printw("     [ˆ] ---------> Gira a peça\n\n");
+	printw(" [<] [V] [>] -----> Move para Direita\n\n");
+	printw("  |   |-----------> Move para Baixo\n");
+	printw("  |---------------> Move para Esquerda\n");
 	refresh();
 }
 
