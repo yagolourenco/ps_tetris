@@ -26,7 +26,7 @@ void newRankFile(){
 	}
 
 	for(i = 0; i < 5; i++)
-		fprintf(Rank, "%s %d %lf\n", ranked[i].name, ranked[i].points, ranked[i].time);
+		fprintf(Rank, "%4s %d %lf\n", ranked[i].name, ranked[i].points, ranked[i].time);
 }
 
 bool isItRanked(){
