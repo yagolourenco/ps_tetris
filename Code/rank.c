@@ -1,4 +1,3 @@
-// RESOLVE 5
 #include "estruturas.h"
 
 void sortRank(){
@@ -18,7 +17,7 @@ void sortRank(){
 }
 
 void newRankFile(){
-	
+	int i;
 	FILE *arq = fopen("ranking.txt", "w+");
 
 	if(arq == NULL){
@@ -26,48 +25,31 @@ void newRankFile(){
 		return;
 	}
 
-	int i;
-
-	for(i = 0; i < 5; i++){
-		fprintf(arq , "%s\n", ranked[i].name);
-		fprintf(arq , "%d\n", ranked[i].points);
-		fprintf(arq , "%lf\n", ranked[i].time);
-	}
+	for(i = 0; i < 5; i++)
+		fprintf(Rank, "%s %d %lf\n", ranked[i].name, ranked[i].points, ranked[i].time);
 }
 
 bool isItRanked(){
-	
+	int i = 0;
+	player aux = ranked[5];
 	FILE *Rank = fopen("ranking.txt", "r"); 	// r é para leitura
 
 	if(Rank == NULL){
 		Rank = fopen("ranking.txt", "w+");		//cria arquivo
-		fprintf(Rank, "%s\n",ranked[5].name);
-		fprintf(Rank , "%d\n", ranked[5].points);
-		fprintf(Rank , "%lf\n", ranked[5].time);
-		
-		return true;
+		fprintf(Rank, "%4s %d %lf\n", "Hector", 100, 10.0);
+		fprintf(Rank, "%4s %d %lf\n", "Cristiano", 100, 9.0);
+		fprintf(Rank, "%4s %d %lf\n", "Claudio", 100, 8.0);
+		fprintf(Rank, "%4s %d %lf\n", "DeBuggers", 100, 7.0);
+		fprintf(Rank, "%4s %d %lf\n", "Não Andre", 0, 500.0);
+		fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
 	}
-	
-	int i;
 
-	i = 0;
-
-	while(fscanf(Rank, "%[^\n] ", ranked[i].name)){ // le enquanto nao for fim de arquivo
-				
-		fscanf(Rank, "%d ", &ranked[i].points);
-
-		fscanf(Rank, "%lf ", &ranked[i].time);
-
+	while(fscanf(Rank, "%4s %d %lf\n", ranked[i].name, &ranked[i].points, &ranked[i].time)) // le enquanto nao for fim de arquivo
 		i++;
-	}
-
-	player aux;
-
-	aux = ranked[5];
 
 	sortRank();
 
-	if(strcmp(ranked[5].name,aux.name) == 0    &&
+	if(strcmp(ranked[5].name, aux.name) == 0    &&
 				ranked[5].points == aux.points &&
 				ranked[5].time == aux.time ) // se o ultimo player continuar la em baixo
 		return false;
@@ -92,15 +74,14 @@ void rank(){
 
 	printw("Diga vos seu nome!\nConsigo ler um nome de até 3 caracteres.\n >");
 	
-	scanw("%s",ranked[5].name);
+	scanw("%4s",ranked[5].name);
 
 	ranked[5].points = game.points;
 
 	ranked[5].time = game.duration;
 
-	if(isItRanked()){ // pontuação for maior que a do ultimo rankeado no txt
+	if(isItRanked()) // pontuação for maior que a do ultimo rankeado no txt
 		show_rank();
-	}
 	else {
 		clear();
 		printw("Me desculpe %s, mas sua pontuação não foi alta o suficiente : ", ranked[5].name);

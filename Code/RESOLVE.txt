@@ -1,2 +1,1 @@
 1 - botar currentPlayer.time para receber o tempo.
-5 - testar e criar os testes para essa função
