@@ -1,4 +1,2 @@
 1 - botar currentPlayer.time para receber o tempo.
-2 - botar todas as bibliotecas para serem colocadas so no estruturas.h, assim diminuindo o tamanho e da poluicao visual dos arquivos
-4 - Implementar essa função ou iteração que está no rank.c
 5 - testar e criar os testes para essa função

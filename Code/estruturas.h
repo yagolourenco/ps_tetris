@@ -1,11 +1,12 @@
-#include <ncurses.h>
-#include <time.h> /* calcular o tempo */
-#include <stdio.h>
-#include <stdlib.h> 
-#include <unistd.h> /* para a funcao getch_char e getch*/
-#include <string.h> 
-#include <termios.h> 
+/* BIBLIOTECAS -------------------------------------------------------------------- */
+#include <time.h> 		/* biblioteca que permite manipulação de tempo */
+#include <stdio.h>		/* biblioteca padrão de entrada e saída */
+#include <stdlib.h> 	/* biblioteca padrão de funções adicionais */
+#include <unistd.h> 	/* para a funcao getch_char e getch*/
+#include <string.h> 	/* biblioteca para manipulação de strings */
+#include <ncurses.h>	/* biblioteca de interface gráfica entre outras coisas */
 
+/* DEFINIÇÕES --------------------------------------------------------------------- */
 #define LARGURA 15
 #define ALTURA 25
 #define LIMITE 5
@@ -15,27 +16,33 @@
 #define FALSO 2
 #define GRAVITYMAX 5
 
+/* ESTRUTURAS --------------------------------------------------------------------- */
 typedef struct{
-	int field[LARGURA][ALTURA], points;
-	struct timespec t_start, t_stop;
-	double duration;
+	int field[LARGURA][ALTURA],			// matriz usada para simular o tetris 
+		points; 						// pontos da partida atual
+	struct timespec t_start, t_stop;	// estrutura usada para saber o tempo de inicio e final da partida
+	double duration;					// guarda o tempo total da partida
 } tetris;
 
 typedef struct{
-	int x, y;
+	int x, y;							// estrutura de coordenadas
 } loc;
 
 typedef struct{
-	loc dot[4];
-	int color, size, x, y, gravity;
-} block; 
+	loc dot[4];							// guarda as 4 posições de cada peça
+	int color, 							// cor da peça
+		size, 							// serve para saber o tamanho da matriz simulada para o giro e a movimentação das peças
+		x, y, 							// coordenadas da matriz simulada para girar e mover a peça
+		gravity;						// guarda a velocidade da gravidade
+} block;
 
 typedef struct{
-	char name[11]; 	// máximo de caracteres para o nome do player é 10
-	int points;		// RESOLVE 1
-	double time;
+	char name[11]; 						// máximo de caracteres para o nome do player é 10
+	int points;							// pontuação do jogador atual
+	double time;						// guarda os pontos da partida
 } player;
 
+/* VARIÁVEIS GLOBAIS -------------------------------------------------------------- */
 tetris game;			// grava as informações do jogo atual
 block currentBlock;		// bloco atual
 player 	currentPlayer, 	// jogador atual
