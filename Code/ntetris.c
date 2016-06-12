@@ -22,7 +22,6 @@ int main() {
 		 	game_on();
 		}
 	} while(opt != '2');
-	//rank();
 	endwin();
 	return 0;
 }
