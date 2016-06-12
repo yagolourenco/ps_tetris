@@ -29,10 +29,20 @@ void newRankFile(){
 
 	for(i = 0; i < 5; i++)
 		fprintf(Rank, "%4s %d %lf\n", ranked[i].name, ranked[i].points, ranked[i].time);
+
+	fclose(Rank);
+	Rank = NULL;
+}
+
+void readFile(){
+	int i = 0;
+	while(!feof(Rank)){
+		fscanf(Rank, "%4s %d %lf\n", ranked[i].name, &ranked[i].points, &ranked[i].time); // le enquanto nao for fim de arquivo
+		i++;
+	}
 }
 
 bool isItRanked(){
-	int i = 0;
 	player aux = ranked[5];
 	FILE *Rank = fopen("ranking.txt", "r"); 	// r é para leitura
 
@@ -45,12 +55,10 @@ bool isItRanked(){
 		fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
 	}
 
-	while(!feof(Rank)){
-		fscanf(Rank, "%4s %d %lf\n", ranked[i].name, &ranked[i].points, &ranked[i].time); // le enquanto nao for fim de arquivo
-		i++;
-	}
-
+	readFile();
 	sortRank();
+	fclose(Rank);
+	Rank = NULL;
 
 	// Verifica se o último player continuar o mesmo
 	if(strcmp(ranked[5].name, aux.name) == 0  &&
@@ -61,30 +69,27 @@ bool isItRanked(){
 }
 
 void show_rank(){
+	FILE *Rank = fopen("ranking.txt", "r");
+	readFile();
 	clear();
 	printw("Ranking:\n");
 	int i;
 	for(i = 0; i < 5; i++)	printw("%d. %10s - %10d - %.0lf\n", i+1, ranked[i].name, ranked[i].points, ranked[i].time);
-	printw("\n\n Press [enter] to leave.");
+	printw("\n\n Press [enter] to GO TO HELL.");
 	refresh();
 	while(getch() != '\n'); // loop até pegar um [enter]
 }
 
 void rank(){
-
 	char a;
 
 	clear();
-
 	printw("Diga vos seu nome!\nConsigo ler um nome de até 4 caracteres.\n >");
-	
 	scanw("%4s",ranked[5].name);
-
 	ranked[5].points = game.points;
-
 	ranked[5].time = game.duration;
 
-	if(isItRanked()) // pontuação for maior que a do ultimo rankeado no txt
+	if(isItRanked()) // pontuação do jogador atual for maior que a do ultimo rankeado no txt
 		show_rank();
 	else {
 		clear();

@@ -44,7 +44,11 @@ void show_menu() {
 	printw("|________________|\n");
 	printw(" ________________\n");
 	printw("|                |\n");
-	printw("| [2][  Sair   ] |\n");
+	printw("| [2][  Rank   ] |\n");
+	printw("|________________|\n");
+	printw(" ________________\n");
+	printw("|                |\n");
+	printw("| [3][  Sair   ] |\n");
 	printw("|________________|\n");
 	attroff(A_BOLD | COLOR_PAIR(4));
 	mvchgat(2, 8, 5, A_BOLD, 7, NULL);
