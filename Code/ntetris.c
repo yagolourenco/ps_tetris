@@ -8,10 +8,8 @@
 //	  Hector Rocha Margittay                          |
 // ___________________________________________________|
 
-#include "estruturas.h"
-
-int main() {	
-	char opt;		
+int main() {
+	char opt;
 	init_ncurses();
 	start();
 	get_enter();
@@ -24,7 +22,7 @@ int main() {
 		 	game_on();
 		}
 	} while(opt != '2');
-	rank();
+	//rank();
 	endwin();
 	return 0;
 }

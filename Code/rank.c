@@ -29,7 +29,7 @@ void newRankFile(){
 	int i;
 
 	for(i = 0; i < 5; i++){
-		fprintf(arq , "%s\n", ranked[i].name);
+		fprintf(arq , "%s\n", "ola");
 		fprintf(arq , "%d\n", ranked[i].points);
 		fprintf(arq , "%lf\n", ranked[i].time);
 	}
@@ -79,27 +79,36 @@ bool isItRanked(){
 }
 
 void show_rank(){
+	clear();
 	printw("Ranking:\n");
 	int i;
 	for(i = 0; i < 5; i++)	printw("%d. %10s - %10d - %.0lf\n", i+1, ranked[i].name, ranked[i].points, ranked[i].time);
 	printw("\n\n Press [enter] to leave.");
-	while(getchar() != '\n'); // loop até pegar um [enter]
+	refresh();
+	while(getch() != '\n'); // loop até pegar um [enter]
 }
 
 void rank(){
 	char a;
+
+	do{
+		clear();
+		printw("Diga vos seu nome!\nConsigo ler um nome de até 10 caracteres.\n >");
+		scanf("%4s", currentPlayer.name);
+		refresh();
+		printw("Seu nome é %s?\n", currentPlayer.name);
+		printw("Aperte [Y/y] para confirmar.\n");
+		a = getch();
+		refresh();
+	}while(a != 'Y' && a != 'y');
+	newRankFile(); // modifica o rank atual para o novo
+	//}
 	if(isItRanked()){ // pontuação for maior que a do ultimo rankeado no txt
-		do{
-			clear();
-			printw("Diga vos seu nome!\nConsigo ler um nome de até 10 caracteres.\n >");
-			scanf("%4s", currentPlayer.name);
-			clear();
-			printw("Seu nome é %s?\n", currentPlayer.name);
-			printw("Aperte [Y/y] para confirmar.\n");
-			a = getchar();
-			refresh();
-		}while(a != 'Y' || a != 'y');
-		newRankFile(); // modifica o rank atual para o novo
+		show_rank();
 	}
-	show_rank();
+	else {
+		clear();
+		printw("Me desculpe %s, mas sua pontuação não foi alta o suficiente :(", currentPlayer.name);
+		refresh();
+	}
 }

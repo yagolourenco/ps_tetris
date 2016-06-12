@@ -186,15 +186,9 @@ int spin_block() {
 int move_block(int opt){
 	int newX = currentBlock.x, newY = currentBlock.y;
 	
-	if(currentBlock.gravity >= GRAVITYMAX)
-		if(!collision(0, 1)) {
-			newY++;
-			currentBlock.gravity -= GRAVITYMAX;
-		}
-	currentBlock.gravity++;
-	
-	if(opt == KEY_DOWN) /* move para baixo */ 
+	if(opt == KEY_DOWN) { /* aumenta a velocidade com que o bloco cai */ 
 		currentBlock.gravity++;
+	}
 	else if(opt == KEY_RIGHT){ /* move para direita */ 
 		if(!collision(1, 0))
 			newX++;	
@@ -212,6 +206,15 @@ int move_block(int opt){
 		put_block(newX, newY);
 
 	return 0;
+}
+
+void apply_gravity() {
+	currentBlock.gravity++;
+	if(currentBlock.gravity >= GRAVITYMAX)
+		if(!collision(0, 1)) {
+			put_block(currentBlock.x, currentBlock.y + 1);
+			currentBlock.gravity -= GRAVITYMAX;
+		}
 }
 
 int cut_this_line(int y){

@@ -13,7 +13,7 @@
 #define VERTICAL 1
 #define VAZIO 0
 #define FALSO 2
-#define GRAVITYMAX 10
+#define GRAVITYMAX 5
 
 typedef struct{
 	int field[LARGURA][ALTURA], points;
