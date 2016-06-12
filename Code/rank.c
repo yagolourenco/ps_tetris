@@ -76,7 +76,7 @@ void show_rank(){
 	clear();
 	printw("Ranking:\n");
 	int i;
-	for(i = 0; i < 5; i++)	printw("%d. %10s - %10d - %.0lf\n", i+1, ranked[i].name, ranked[i].points, ranked[i].time);
+	for(i = 0; i < 5; i++)	printw("%d. %4s - %10d - %.0lf\n", i+1, ranked[i].name, ranked[i].points, ranked[i].time);
 	printw("\n\n Press [enter] to GO TO HELL.");
 	refresh();
 	while(getch() != '\n'); // loop até pegar um [enter]
