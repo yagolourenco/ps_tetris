@@ -36,16 +36,18 @@ bool isItRanked(){
 
 	if(Rank == NULL){
 		Rank = fopen("ranking.txt", "w+");		//cria arquivo
-		fprintf(Rank, "%4s %d %lf\n", "Hector", 100, 10.0);
-		fprintf(Rank, "%4s %d %lf\n", "Cristiano", 100, 9.0);
-		fprintf(Rank, "%4s %d %lf\n", "Claudio", 100, 8.0);
-		fprintf(Rank, "%4s %d %lf\n", "DeBuggers", 100, 7.0);
-		fprintf(Rank, "%4s %d %lf\n", "Não Andre", 0, 500.0);
+		fprintf(Rank, "%4s %d %lf\n", "Hect", 100, 10.0);
+		fprintf(Rank, "%4s %d %lf\n", "Cris", 100, 9.0);
+		fprintf(Rank, "%4s %d %lf\n", "Cdio", 100, 8.0);
+		fprintf(Rank, "%4s %d %lf\n", "Bugr", 100, 7.0);
+		fprintf(Rank, "%4s %d %lf\n", "adre", 0, 500.0);
 		fprintf(Rank, "%4s %d %lf\n", ranked[5].name, ranked[5].points, ranked[5].time);
 	}
 
-	while(fscanf(Rank, "%4s %d %lf\n", ranked[i].name, &ranked[i].points, &ranked[i].time)) // le enquanto nao for fim de arquivo
+	while(!feof(Rank)){
+		fscanf(Rank, "%4s %d %lf\n", ranked[i].name, &ranked[i].points, &ranked[i].time); // le enquanto nao for fim de arquivo
 		i++;
+	}
 
 	sortRank();
 
